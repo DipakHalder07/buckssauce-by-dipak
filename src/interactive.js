@@ -1,3 +1,4 @@
+import './index.css';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -324,126 +325,255 @@ document.querySelectorAll('.group\\/button').forEach(btn => {
 });
 
 // =========================================================================
-// PAGE LOADER & HERO ENTRANCE (Awwwards / CodeGrid Bucks Sauce Reveal)
+// PAGE LOADER & HERO ENTRANCE (Exact Live Match from buckssauce.com)
 // =========================================================================
-const preloader = document.getElementById('bucks-preloader');
+function getRandomRotation() {
+  return 0.5 > Math.random() ? -90 : 90;
+}
 
 function runPageLoader() {
   initHero();
 
-  if (!preloader) {
+  const preloaderEl = document.getElementById('bucks-preloader') || document.querySelector('.z-9999');
+  if (!preloaderEl) {
     animateHeroEntrance();
     return;
   }
 
-  const logo = preloader.querySelector('.loader-logo');
-  const badge = preloader.querySelector('.loader-badge');
-  const peach = preloader.querySelector('.loader-fruit-peach');
-  const pineapple = preloader.querySelector('.loader-fruit-pineapple');
-  const habanero = preloader.querySelector('.loader-fruit-habanero');
-  const cherry = preloader.querySelector('.loader-fruit-cherry');
-
-  const rev1 = preloader.querySelector('.loader-revealer-1');
-  const rev2 = preloader.querySelector('.loader-revealer-2');
-  const rev3 = preloader.querySelector('.loader-revealer-3');
-  const rev4 = preloader.querySelector('.loader-revealer-4');
+  const circlesWrapper = preloaderEl.querySelector('[data-circles-wrapper]');
+  const heroSection = document.querySelector('[data-home-hero]');
+  const circles = Array.from(preloaderEl.querySelectorAll('[data-circle]'));
+  const foods = Array.from(preloaderEl.querySelectorAll('[data-food]'));
+  const logo = preloaderEl.querySelector('[data-logo]');
+  const logoSvg = logo ? logo.querySelector('svg') : null;
+  const leftHorn = logoSvg ? logoSvg.querySelector('#left-horn') : null;
+  const rightHorn = logoSvg ? logoSvg.querySelector('#right-horn') : null;
+  const bucksLetters = logoSvg ? Array.from(logoSvg.querySelectorAll('#bucks > path')) : [];
+  const sauceLetters = logoSvg ? Array.from(logoSvg.querySelectorAll('#sauce > path')) : [];
 
   // Lock scrolling during preloader
   lenis.stop();
   document.body.style.overflow = 'hidden';
 
-  // Master Loader Timeline
-  const tl = gsap.timeline({
-    onComplete: () => {
-      lenis.start();
-      document.body.style.overflow = '';
-      preloader.style.display = 'none';
-      preloader.style.pointerEvents = 'none';
+  const maskCircles = (pct) => {
+    if (circlesWrapper) {
+      const mask = `radial-gradient(circle, transparent ${pct}%, black ${pct}%)`;
+      circlesWrapper.style.maskImage = mask;
+      circlesWrapper.style.webkitMaskImage = mask;
     }
+  };
+
+  // 1. Initial GSAP Setups (Concentric circles start at scale 0)
+  gsap.set(preloaderEl, { opacity: 1, pointerEvents: 'all', display: 'block' });
+  maskCircles(0);
+  if (heroSection) {
+    gsap.set(heroSection, { y: 0.2 * window.innerHeight, opacity: 0 });
+  }
+  gsap.set(circles, { scale: 0, transformOrigin: 'center center' });
+  if (logo) {
+    gsap.set(logo, { scale: 0, opacity: 0, transformOrigin: '50% 50%' });
+  }
+  if (leftHorn) {
+    gsap.set(leftHorn, { opacity: 0, rotate: -25, transformOrigin: 'bottom right' });
+  }
+  if (rightHorn) {
+    gsap.set(rightHorn, { opacity: 0, rotate: 25, transformOrigin: 'bottom left' });
+  }
+  if (bucksLetters.length || sauceLetters.length) {
+    gsap.set([...bucksLetters, ...sauceLetters], { opacity: 0, scale: 0.2, y: 4, rotate: 0, transformOrigin: '50% 100%' });
+  }
+
+  // 2. Geometry calculations for 4 food items
+  const rect = preloaderEl.getBoundingClientRect();
+  const center = { x: rect.width / 2, y: rect.height / 2 };
+  const isMobile = window.innerWidth < 1024;
+
+  const foodCoords = foods.map(el => {
+    const t = el.getBoundingClientRect();
+    const centerX = t.left - rect.left + t.width / 2;
+    const centerY = t.top - rect.top + t.height / 2;
+    return {
+      el,
+      top: t.top - rect.top,
+      left: t.left - rect.left,
+      centerX,
+      centerY,
+      width: t.width,
+      height: t.height
+    };
   });
 
-  // 1. Logo & Badge entrance from center
-  tl.fromTo(logo, 
-    { scale: 0.65, opacity: 0, y: 30 },
-    { scale: 1, opacity: 1, y: 0, duration: 0.65, ease: 'back.out(1.4)' }
-  );
+  const initialRotations = foods.map(getRandomRotation);
 
-  tl.fromTo(badge,
-    { opacity: 0, letterSpacing: '0.45em' },
-    { opacity: 1, letterSpacing: '0.25em', duration: 0.5, ease: 'power2.out' },
-    '-=0.35'
-  );
+  const exitVectors = foodCoords.map(item => {
+    let dx = item.centerX - center.x;
+    let dy = item.centerY - center.y;
+    if (dx === 0 && dy === 0) dx = 1;
+    const dist = Math.hypot(dx, dy) || 1;
+    const nx = dx / dist;
+    const ny = dy / dist;
+    const distToEdge = (Math.max(
+      nx > 0 ? (rect.width - item.centerX) / nx : nx < 0 ? -item.centerX / nx : 0,
+      ny > 0 ? (rect.height - item.centerY) / ny : ny < 0 ? -item.centerY / ny : 0
+    ) + 12 * Math.max(item.width, item.height) * 0.5) * (isMobile ? 1.8 : 1.4);
+    return { x: nx * distToEdge, y: ny * distToEdge };
+  });
 
-  // 2. 4 Fruits fly in from diagonal quadrants into orbital positions around logo
-  tl.fromTo(peach,
-    { x: -280, y: -220, rotation: -35, opacity: 0, scale: 0.5 },
-    { x: -160, y: -95, rotation: -12, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
-    0.25
-  );
+  if (foods.length) {
+    gsap.set(foods, {
+      opacity: 0,
+      scale: 0,
+      rotate: (i) => initialRotations[i] ?? 0,
+      transformOrigin: '50% 50%',
+      top: '50%',
+      left: '50%',
+      xPercent: -50,
+      yPercent: -50
+    });
+  }
 
-  tl.fromTo(pineapple,
-    { x: 280, y: -220, rotation: 35, opacity: 0, scale: 0.5 },
-    { x: 160, y: -90, rotation: 15, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
-    0.3
-  );
+  let isCompleted = false;
+  const onLoaderComplete = () => {
+    if (isCompleted) return;
+    isCompleted = true;
+    const maskProgress = { pct: 0 };
+    gsap.to(maskProgress, {
+      pct: 150,
+      duration: 0.5,
+      ease: 'power3.inOut',
+      onUpdate: () => maskCircles(maskProgress.pct),
+      onComplete: () => {
+        preloaderEl.style.pointerEvents = 'none';
+        preloaderEl.style.opacity = '0';
+        preloaderEl.style.display = 'none';
+        lenis.start();
+        document.body.style.overflow = '';
+      }
+    });
 
-  tl.fromTo(habanero,
-    { x: -280, y: 220, rotation: -30, opacity: 0, scale: 0.5 },
-    { x: -150, y: 105, rotation: -8, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
-    0.35
-  );
-
-  tl.fromTo(cherry,
-    { x: 280, y: 220, rotation: 30, opacity: 0, scale: 0.5 },
-    { x: 150, y: 105, rotation: 14, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
-    0.4
-  );
-
-  // Subtle breathing float in place for 0.4s
-  tl.to([peach, pineapple, habanero, cherry], {
-    y: '+=8',
-    rotation: '+=3',
-    duration: 0.4,
-    yoyo: true,
-    repeat: 1,
-    ease: 'sine.inOut'
-  }, 0.9);
-
-  // 3. Fruits & Logo exit (burst outward and fade)
-  tl.to([peach, pineapple, habanero, cherry], {
-    scale: 1.25,
-    opacity: 0,
-    duration: 0.35,
-    stagger: 0.03,
-    ease: 'power2.in'
-  }, 1.35);
-
-  tl.to(logo, {
-    scale: 0.85,
-    opacity: 0,
-    duration: 0.35,
-    ease: 'power2.in'
-  }, 1.4);
-
-  // 4. Concentric circular revealers expand outward in colored waves
-  tl.to(rev1, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.5);
-  tl.to(rev2, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.65);
-  tl.to(rev3, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.8);
-  tl.to(rev4, { clipPath: 'circle(150% at 50% 50%)', duration: 0.8, ease: 'power3.inOut' }, 1.95);
-
-  // 5. Trigger Hero Section Entrance as the reveal completes!
-  tl.add(() => {
+    if (heroSection) {
+      gsap.to(heroSection, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' });
+    }
     animateHeroEntrance();
-  }, 2.1);
+  };
 
-  tl.to(preloader, {
-    opacity: 0,
-    duration: 0.35,
-    ease: 'power2.out'
-  }, 2.4);
+  // Master Timeline (matching exact live site timings and easing)
+  const tl = gsap.timeline({ paused: true, onComplete: onLoaderComplete });
+
+  // 1. Concentric Circles Expand (Gold, Orange, Red, Dark Background)
+  tl.to(circles, {
+    scale: 1,
+    duration: 1.6,
+    ease: 'power2.inOut',
+    stagger: 0.2
+  });
+
+  // 2. Logo entrance at 1.0s
+  tl.add('logoStart', 1);
+  if (logo) {
+    tl.to(logo, {
+      scale: 1,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, 'logoStart');
+  }
+
+  // 3. Horns pop out
+  if (leftHorn && rightHorn) {
+    tl.to([leftHorn, rightHorn], {
+      opacity: 1,
+      rotate: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.05
+    }, '<15%');
+  }
+
+  // 4. Bucks & Sauce text letter stagger
+  if (bucksLetters.length) {
+    const firstLetter = bucksLetters[0] ?? null;
+    const lastLetter = bucksLetters[bucksLetters.length - 1] ?? null;
+    tl.to(bucksLetters, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.02,
+      ease: 'power2.out'
+    }, '<35%');
+    if (firstLetter) tl.fromTo(firstLetter, { rotate: -5 }, { rotate: 0, duration: 0.6, ease: 'power2.out' }, '<');
+    if (lastLetter && lastLetter !== firstLetter) tl.fromTo(lastLetter, { rotate: 5 }, { rotate: 0, duration: 0.6, ease: 'power2.out' }, '<');
+  }
+  if (sauceLetters.length) {
+    tl.to(sauceLetters, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.02,
+      ease: 'power2.out'
+    }, '<');
+  }
+
+  // 5. Fruits fly in from center to designated target positions
+  if (foods.length) {
+    tl.to(foods, {
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      top: (i) => foodCoords[i]?.top ?? '50%',
+      left: (i) => foodCoords[i]?.left ?? '50%',
+      xPercent: 0,
+      yPercent: 0,
+      duration: 0.8,
+      stagger: 0.08,
+      ease: 'power2.out'
+    }, '<');
+  }
+
+  // 6. Hold 1s, then explosive flyout
+  tl.add('flyout', '+=1.0');
+
+  if (isMobile) {
+    const mobileCircles = Array.from(preloaderEl.querySelectorAll('[data-circle-gold], [data-circle-orange], [data-circle-red]'));
+    tl.to(mobileCircles, { opacity: 0, duration: 0.25, ease: 'power1.in' }, 'flyout');
+  }
+
+  // Logo shoots upward
+  if (logo) {
+    tl.to(logo, {
+      y: -2000,
+      scale: 5,
+      duration: 1,
+      ease: 'power2.inOut'
+    }, 'flyout');
+  }
+
+  // Fruits blast outward past viewport edges
+  if (foods.length) {
+    tl.to(foods, {
+      scale: 12,
+      x: (i) => exitVectors[i]?.x ?? 0,
+      y: (i) => exitVectors[i]?.y ?? 0,
+      duration: 0.9,
+      ease: 'power2.inOut',
+      stagger: 0.04
+    }, 'flyout+=0.03');
+  }
+
+  // Trigger hero reveal through expanding radial mask
+  tl.call(onLoaderComplete, undefined, 'flyout+=0.21');
+
+  tl.play();
 }
 
 function animateHeroEntrance() {
+  const heroSection = document.querySelector('[data-home-hero]');
+  if (heroSection) {
+    gsap.to(heroSection, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+  }
+
   const header = document.querySelector('header') || document.querySelector('[data-nav]');
   const title = document.querySelector('[data-title]');
   const bottle0 = bottles[0];
@@ -516,85 +646,103 @@ function animateHeroEntrance() {
 runPageLoader();
 
 // =========================================================================
-// HEADER SCROLL ANIMATION (Glassmorphism, Logo Scale & Directional Smart Nav)
+// HEADER SCROLL ANIMATION & DESKTOP NAV (Authentic GSAP Match from buckssauce.com)
 // =========================================================================
 const headerEl = document.querySelector('header') || document.querySelector('[data-nav]');
 const headerLogoEl = headerEl ? headerEl.querySelector('[data-logo]') : null;
+const logoSvg = headerLogoEl ? headerLogoEl.querySelector('svg') : null;
+const logoHead = headerLogoEl ? headerLogoEl.querySelector('#head') : null;
+const logoText = headerLogoEl ? headerLogoEl.querySelector('#text') : null;
+const logoLeftHorn = headerLogoEl ? headerLogoEl.querySelector('#left-horn') : null;
+const logoRightHorn = headerLogoEl ? headerLogoEl.querySelector('#right-horn') : null;
 
-let lastScrollPosition = 0;
-let isHeaderFrosted = false;
-let isHeaderHidden = false;
+const desktopNavEl = headerEl ? headerEl.querySelector('[data-desktop-nav]') : null;
+const globalNavEl = headerEl ? headerEl.querySelector('[data-global-nav]') : null;
+const cartDrawer = document.querySelector('[data-cart]');
+const menuDrawer = document.querySelector('[data-menu]');
 
+const U = (37 / 142) * 100; // 26.056338% - exact mascot crop offset
+const isDesktop = () => window.innerWidth >= 1024;
+
+let isHeaderScrolled = false;
+
+// 1. Initial State Setup
+if (isDesktop()) {
+  if (globalNavEl) gsap.set(globalNavEl, { y: -150 });
+  if (desktopNavEl) gsap.set(desktopNavEl, { y: 0 });
+  if (headerLogoEl) gsap.set(headerLogoEl, { height: 'auto', scale: 1 });
+  if (logoSvg) gsap.set(logoSvg, { yPercent: 0 });
+  if (logoHead && logoText) gsap.set([logoHead, logoText], { opacity: 1 });
+  if (logoRightHorn) gsap.set(logoRightHorn, { x: 0 });
+  if (logoLeftHorn) gsap.set(logoLeftHorn, { x: 0 });
+} else {
+  if (globalNavEl) gsap.set(globalNavEl, { y: 0 });
+  if (headerLogoEl) gsap.set(headerLogoEl, { height: 50, scale: 1 });
+  if (logoSvg) gsap.set(logoSvg, { yPercent: -U });
+  if (logoHead && logoText) gsap.set([logoHead, logoText], { opacity: 0 });
+  if (logoRightHorn) gsap.set(logoRightHorn, { x: -24 });
+}
+
+// 2. Responsive Scroll Transition
 function onScrollUpdate(currentY) {
   if (!headerEl) return;
+  const shouldBeScrolled = currentY > 64;
 
-  // 1. Frosted Glass Transition & Logo Shrink
-  if (currentY > 40 && !isHeaderFrosted) {
-    isHeaderFrosted = true;
-    gsap.to(headerEl, {
-      backgroundColor: 'rgba(19, 16, 14, 0.92)',
-      backdropFilter: 'blur(16px)',
-      webkitBackdropFilter: 'blur(16px)',
-      borderBottom: '1px solid rgba(245, 228, 199, 0.08)',
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.35)',
-      duration: 0.35,
-      ease: 'power2.out'
-    });
-    if (headerLogoEl) {
-      gsap.to(headerLogoEl, {
-        scale: 0.85,
-        duration: 0.35,
-        ease: 'power2.out',
-        transformOrigin: 'left center'
-      });
+  if (shouldBeScrolled && !isHeaderScrolled) {
+    isHeaderScrolled = true;
+    const tl = gsap.timeline({ defaults: { duration: 0.45, ease: 'power2.out' } });
+
+    if (isDesktop()) {
+      if (desktopNavEl) {
+        tl.to(desktopNavEl, { y: -100, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (globalNavEl) {
+        tl.to(globalNavEl, { y: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (headerLogoEl) {
+        tl.to(headerLogoEl, { height: 50, scale: 0.9, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoSvg) {
+        tl.to(logoSvg, { yPercent: -U, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoHead && logoText) {
+        tl.to([logoHead, logoText], { opacity: 0, duration: 0.35, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoRightHorn) {
+        tl.to(logoRightHorn, { x: -24, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoLeftHorn) {
+        tl.to(logoLeftHorn, { x: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
     }
-  } else if (currentY <= 40 && isHeaderFrosted) {
-    isHeaderFrosted = false;
-    gsap.to(headerEl, {
-      backgroundColor: 'rgba(19, 16, 14, 0)',
-      backdropFilter: 'blur(0px)',
-      webkitBackdropFilter: 'blur(0px)',
-      borderBottom: '1px solid transparent',
-      boxShadow: 'none',
-      duration: 0.35,
-      ease: 'power2.out'
-    });
-    if (headerLogoEl) {
-      gsap.to(headerLogoEl, {
-        scale: 1,
-        duration: 0.35,
-        ease: 'power2.out',
-        transformOrigin: 'left center'
-      });
-    }
-  }
+  } else if (!shouldBeScrolled && isHeaderScrolled) {
+    isHeaderScrolled = false;
+    const tl = gsap.timeline({ defaults: { duration: 0.45, ease: 'power2.out' } });
 
-  // 2. Smart Directional Hide/Show (Show on scroll up, Hide on scroll down past 280px)
-  const isDrawerOpen = (cartDrawer && cartDrawer.style.pointerEvents === 'auto') ||
-                       (menuDrawer && menuDrawer.style.pointerEvents === 'auto');
-
-  if (!isDrawerOpen) {
-    const delta = currentY - lastScrollPosition;
-    if (currentY > 280 && delta > 8 && !isHeaderHidden) {
-      isHeaderHidden = true;
-      gsap.to(headerEl, {
-        y: '-100%',
-        duration: 0.38,
-        ease: 'power2.inOut',
-        overwrite: 'auto'
-      });
-    } else if ((delta < -5 || currentY <= 50) && isHeaderHidden) {
-      isHeaderHidden = false;
-      gsap.to(headerEl, {
-        y: '0%',
-        duration: 0.35,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      });
+    if (isDesktop()) {
+      if (desktopNavEl) {
+        tl.to(desktopNavEl, { y: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (globalNavEl) {
+        tl.to(globalNavEl, { y: -150, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (headerLogoEl) {
+        tl.to(headerLogoEl, { height: 'auto', scale: 1, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoSvg) {
+        tl.to(logoSvg, { yPercent: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoHead && logoText) {
+        tl.to([logoHead, logoText], { opacity: 1, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoRightHorn) {
+        tl.to(logoRightHorn, { x: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
+      if (logoLeftHorn) {
+        tl.to(logoLeftHorn, { x: 0, duration: 0.45, ease: 'power2.out', overwrite: 'auto' }, 0);
+      }
     }
   }
-
-  lastScrollPosition = currentY;
 }
 
 lenis.on('scroll', (e) => {
@@ -603,6 +751,120 @@ lenis.on('scroll', (e) => {
 window.addEventListener('scroll', () => {
   onScrollUpdate(window.scrollY);
 }, { passive: true });
+
+// 3. Desktop Nav Links Character Roll Hover Animation
+if (desktopNavEl) {
+  const navLinks = desktopNavEl.querySelectorAll('li a, li button');
+  navLinks.forEach(link => {
+    const firstChars = link.querySelectorAll('[data-first-text] .char');
+    const secondChars = link.querySelectorAll('[data-second-text] .char');
+
+    if (firstChars.length > 0 && secondChars.length > 0) {
+      link.addEventListener('mouseenter', () => {
+        gsap.to(firstChars, {
+          yPercent: -105,
+          duration: 0.4,
+          stagger: 0.02,
+          ease: 'back.out(1)',
+          overwrite: 'auto'
+        });
+        gsap.to(secondChars, {
+          yPercent: -105,
+          duration: 0.4,
+          stagger: 0.02,
+          ease: 'back.out(1)',
+          overwrite: 'auto'
+        });
+      });
+
+      link.addEventListener('mouseleave', () => {
+        gsap.to(firstChars, {
+          yPercent: 0,
+          duration: 0.4,
+          stagger: { amount: 0.02, from: 'end' },
+          ease: 'back.out(1)',
+          overwrite: 'auto'
+        });
+        gsap.to(secondChars, {
+          yPercent: 0,
+          duration: 0.4,
+          stagger: { amount: 0.02, from: 'end' },
+          ease: 'back.out(1)',
+          overwrite: 'auto'
+        });
+      });
+    }
+  });
+
+  // Desktop cart trigger
+  const dCartBtn = desktopNavEl.querySelector('button');
+  if (dCartBtn) {
+    dCartBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCart();
+    });
+  }
+}
+
+// 4. Global Nav Buttons Hover & Click
+if (globalNavEl) {
+  // "GET SAUCE" pill button
+  const getSauceLink = globalNavEl.querySelector('a');
+  if (getSauceLink) {
+    const firstText = getSauceLink.querySelector('[data-text-first]');
+    const secondText = getSauceLink.querySelector('[data-text-second]');
+    const btnBg = getSauceLink.querySelector('[data-button-bg]');
+
+    getSauceLink.addEventListener('mouseenter', () => {
+      if (firstText) gsap.to(firstText, { y: -16, opacity: 0, duration: 0.28, ease: 'power2.out' });
+      if (secondText) gsap.to(secondText, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' });
+      if (btnBg) gsap.to(btnBg, { scale: 1.04, duration: 0.28, ease: 'power2.out' });
+    });
+    getSauceLink.addEventListener('mouseleave', () => {
+      if (firstText) gsap.to(firstText, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' });
+      if (secondText) gsap.to(secondText, { y: 16, opacity: 0, duration: 0.28, ease: 'power2.out' });
+      if (btnBg) gsap.to(btnBg, { scale: 1, duration: 0.28, ease: 'power2.out' });
+    });
+  }
+
+  // Cart Button
+  const gCartBtn = globalNavEl.querySelector('[data-cart-button]');
+  if (gCartBtn) {
+    const firstIcon = gCartBtn.querySelector('[data-right-icon-first]');
+    const secondIcon = gCartBtn.querySelector('[data-right-icon-second]');
+    gCartBtn.addEventListener('mouseenter', () => {
+      if (firstIcon) gsap.to(firstIcon, { x: 16, opacity: 0, duration: 0.25, ease: 'power2.out' });
+      if (secondIcon) gsap.to(secondIcon, { x: 0, scale: 1, opacity: 1, duration: 0.25, ease: 'power2.out' });
+    });
+    gCartBtn.addEventListener('mouseleave', () => {
+      if (firstIcon) gsap.to(firstIcon, { x: 0, opacity: 1, duration: 0.25, ease: 'power2.out' });
+      if (secondIcon) gsap.to(secondIcon, { x: -16, scale: 0, opacity: 0, duration: 0.25, ease: 'power2.out' });
+    });
+    gCartBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCart();
+    });
+  }
+
+  // Hamburger Button
+  const gBurgerBtn = globalNavEl.querySelector('[data-hamburger]');
+  if (gBurgerBtn) {
+    const firstIcon = gBurgerBtn.querySelector('[data-right-icon-first]');
+    const secondIcon = gBurgerBtn.querySelector('[data-right-icon-second]');
+    gBurgerBtn.addEventListener('mouseenter', () => {
+      if (firstIcon) gsap.to(firstIcon, { x: 16, opacity: 0, duration: 0.25, ease: 'power2.out' });
+      if (secondIcon) gsap.to(secondIcon, { x: 0, scale: 1, opacity: 1, duration: 0.25, ease: 'power2.out' });
+    });
+    gBurgerBtn.addEventListener('mouseleave', () => {
+      if (firstIcon) gsap.to(firstIcon, { x: 0, opacity: 1, duration: 0.25, ease: 'power2.out' });
+      if (secondIcon) gsap.to(secondIcon, { x: -16, scale: 0, opacity: 0, duration: 0.25, ease: 'power2.out' });
+    });
+    gBurgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openMenu();
+    });
+  }
+}
 
 // =========================================================================
 // 3. Section 1 ("Clean Ingredients") Stacked Cards Animation
@@ -918,8 +1180,6 @@ if (reviewsContainer) {
 // =========================================================================
 // 8. Cart Drawer & Menu Drawer
 // =========================================================================
-const cartDrawer = document.querySelector('[data-cart]');
-const menuDrawer = document.querySelector('[data-menu]');
 
 export function openCart() {
   if (cartDrawer) {

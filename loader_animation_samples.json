@@ -1,0 +1,1224 @@
+[
+  {
+    "id": 1,
+    "time": 111,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9868, 0.9868)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9179, 0.9179)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.7464, 0.7464)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.4321, 0.4321)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, 0px, 0px) scale(0.8359, 0.8359)",
+        "opacity": "0.8359"
+      },
+      "foods": [
+        {
+          "transform": "translate(-47.3302%, -47.3302%) translate3d(0px, 0px, 0px) rotate(85.1944deg) scale(0.0534, 0.0534)",
+          "opacity": "0.0534"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "time": 210,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9974, 0.9974)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9623, 0.9623)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.8479, 0.8479)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.6075, 0.6075)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, 0px, 0px) scale(0.9246, 0.9246)",
+        "opacity": "0.9246"
+      },
+      "foods": [
+        {
+          "transform": "translate(-31.4574%, -31.4574%) translate3d(0px, 0px, 0px) rotate(56.6233deg) scale(0.3709, 0.3709)",
+          "opacity": "0.3709"
+        },
+        {
+          "transform": "translate(-43.8062%, -43.8062%) translate3d(0px, 0px, 0px) rotate(-78.8512deg) scale(0.1239, 0.1239)",
+          "opacity": "0.1239"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "time": 310,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9999, 0.9999)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9868, 0.9868)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9179, 0.9179)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.7464, 0.7464)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, 0px, 0px) scale(0.9737, 0.9737)",
+        "opacity": "0.9737"
+      },
+      "foods": [
+        {
+          "transform": "translate(-19.6011%, -19.6011%) translate3d(0px, 0px, 0px) rotate(35.282deg) scale(0.608, 0.608)",
+          "opacity": "0.608"
+        },
+        {
+          "transform": "translate(-28.7835%, -28.7835%) translate3d(0px, 0px, 0px) rotate(-51.8104deg) scale(0.4243, 0.4243)",
+          "opacity": "0.4243"
+        },
+        {
+          "transform": "translate(-40.4616%, -40.4616%) translate3d(0px, 0px, 0px) rotate(-72.8309deg) scale(0.1908, 0.1908)",
+          "opacity": "0.1908"
+        },
+        {
+          "transform": "translate(-50%, -50%) rotate(-90deg) scale(0, 0)",
+          "opacity": "0"
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "time": 420,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9974, 0.9974)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9623, 0.9623)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.8479, 0.8479)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, 0px, 0px) scale(0.9949, 0.9949)",
+        "opacity": "0.9949"
+      },
+      "foods": [
+        {
+          "transform": "translate(-11.1755%, -11.1755%) translate3d(0px, 0px, 0px) rotate(20.1159deg) scale(0.7765, 0.7765)",
+          "opacity": "0.7765"
+        },
+        {
+          "transform": "translate(-17.6603%, -17.6603%) translate3d(0px, 0px, 0px) rotate(-31.7885deg) scale(0.6468, 0.6468)",
+          "opacity": "0.6468"
+        },
+        {
+          "transform": "translate(-26.2657%, -26.2657%) translate3d(0px, 0px, 0px) rotate(-47.2782deg) scale(0.4747, 0.4747)",
+          "opacity": "0.4747"
+        },
+        {
+          "transform": "translate(-37.2917%, -37.2917%) translate3d(0px, 0px, 0px) rotate(-67.1251deg) scale(0.2542, 0.2542)",
+          "opacity": "0.2542"
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "time": 527,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9895, 0.9895)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9271, 0.9271)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, 0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(-4.8867%, -4.8867%) translate3d(0px, 0px, 0px) rotate(8.796deg) scale(0.9023, 0.9023)",
+          "opacity": "0.9023"
+        },
+        {
+          "transform": "translate(-8.8102%, -8.8102%) translate3d(0px, 0px, 0px) rotate(-15.8584deg) scale(0.8238, 0.8238)",
+          "opacity": "0.8238"
+        },
+        {
+          "transform": "translate(-14.4157%, -14.4157%) translate3d(0px, 0px, 0px) rotate(-25.9482deg) scale(0.7117, 0.7117)",
+          "opacity": "0.7117"
+        },
+        {
+          "transform": "translate(-22.003%, -22.003%) translate3d(0px, 0px, 0px) rotate(-39.6054deg) scale(0.5599, 0.5599)",
+          "opacity": "0.5599"
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "time": 643,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9989, 0.9989)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9726, 0.9726)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(-1.5535%, -1.5535%) translate3d(0px, 0px, 0px) rotate(2.7963deg) scale(0.9689, 0.9689)",
+          "opacity": "0.9689"
+        },
+        {
+          "transform": "translate(-3.5575%, -3.5575%) translate3d(0px, 0px, 0px) rotate(-6.4036deg) scale(0.9288, 0.9288)",
+          "opacity": "0.9288"
+        },
+        {
+          "transform": "translate(-6.8047%, -6.8047%) translate3d(0px, 0px, 0px) rotate(-12.2485deg) scale(0.8639, 0.8639)",
+          "opacity": "0.8639"
+        },
+        {
+          "transform": "translate(-11.595%, -11.595%) translate3d(0px, 0px, 0px) rotate(-20.871deg) scale(0.7681, 0.7681)",
+          "opacity": "0.7681"
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "time": 743,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9916, 0.9916)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(-0.3463%, -0.3463%) translate3d(0px, 0px, 0px) rotate(0.6234deg) scale(0.9931, 0.9931)",
+          "opacity": "0.9931"
+        },
+        {
+          "transform": "translate(-1.2274%, -1.2274%) translate3d(0px, 0px, 0px) rotate(-2.2092deg) scale(0.9755, 0.9755)",
+          "opacity": "0.9755"
+        },
+        {
+          "transform": "translate(-2.9802%, -2.9802%) translate3d(0px, 0px, 0px) rotate(-5.3644deg) scale(0.9404, 0.9404)",
+          "opacity": "0.9404"
+        },
+        {
+          "transform": "translate(-5.905%, -5.905%) translate3d(0px, 0px, 0px) rotate(-10.629deg) scale(0.8819, 0.8819)",
+          "opacity": "0.8819"
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "time": 844,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(0.9989, 0.9989)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(-0.0141%, -0.0141%) translate3d(0px, 0px, 0px) rotate(0.0254deg) scale(0.9997, 0.9997)",
+          "opacity": "0.9997"
+        },
+        {
+          "transform": "translate(-0.2272%, -0.2272%) translate3d(0px, 0px, 0px) rotate(-0.4089deg) scale(0.9955, 0.9955)",
+          "opacity": "0.9955"
+        },
+        {
+          "transform": "translate(-0.9371%, -0.9371%) translate3d(0px, 0px, 0px) rotate(-1.6867deg) scale(0.9813, 0.9813)",
+          "opacity": "0.9813"
+        },
+        {
+          "transform": "translate(-2.4439%, -2.4439%) translate3d(0px, 0px, 0px) rotate(-4.399deg) scale(0.9511, 0.9511)",
+          "opacity": "0.9511"
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "time": 960,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(-0.0004%, -0.0004%) translate3d(0px, 0px, 0px) rotate(-0.0007deg)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(-0.0851%, -0.0851%) translate3d(0px, 0px, 0px) rotate(-0.1531deg) scale(0.9983, 0.9983)",
+          "opacity": "0.9983"
+        },
+        {
+          "transform": "translate(-0.5279%, -0.5279%) translate3d(0px, 0px, 0px) rotate(-0.9502deg) scale(0.9894, 0.9894)",
+          "opacity": "0.9894"
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "time": 1059,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(-0.042%, -0.042%) translate3d(0px, 0px, 0px) rotate(-0.0757deg) scale(0.9992, 0.9992)",
+          "opacity": "0.9992"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "time": 1181,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "time": 1280,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "time": 1380,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "time": 1481,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "time": 1582,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "time": 1697,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "time": 1797,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "time": 1913,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "time": 2013,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "time": 2128,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate(0px, 0px)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "time": 2246,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -10.2183px, 0px) scale(1.0204, 1.0204)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-4.1608px, 2.4371px, 0px) scale(1.0292, 1.0292)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-0.462px, -0.5145px, 0px) scale(1.0034, 1.0034)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate(0px, 0px)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "time": 2374,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -90.5188px, 0px) scale(1.181, 1.181)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-63.2882px, 37.0701px, 0px) scale(1.4441, 1.4441)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-29.8564px, -33.2526px, 0px) scale(1.2226, 1.2226)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(15.5494px, -6.302px, 0px) scale(1.0906, 1.0906)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(3.9741px, 3.5157px, 0px) scale(1.025, 1.025)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "time": 2463,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -273.359px, 0px) scale(1.5467, 1.5467)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-219.695px, 128.683px, 0px) scale(2.5416, 2.5416)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-133.449px, -148.629px, 0px) scale(1.9949, 1.9949)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(102.23px, -41.4327px, 0px) scale(1.5957, 1.5957)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(51.0689px, 45.1782px, 0px) scale(1.3207, 1.3207)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "time": 2564,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -611.96px, 0px) scale(2.2239, 2.2239)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-528.086px, 309.318px, 0px) scale(4.7057, 4.7057)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-360.662px, -401.688px, 0px) scale(3.6889, 3.6889)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(322.226px, -130.594px, 0px) scale(2.8775, 2.8775)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(198.791px, 175.861px, 0px) scale(2.2484, 2.2484)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "time": 2682,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -1228.9px, 0px) scale(3.4578, 3.4578)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-1063.23px, 622.771px, 0px) scale(8.4609, 8.4609)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-838.485px, -933.862px, 0px) scale(7.2513, 7.2513)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(832.225px, -337.29px, 0px) scale(5.8492, 5.8492)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(576.721px, 510.197px, 0px) scale(4.6218, 4.6218)",
+          "opacity": "1"
+        }
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "time": 2781,
+    "value": {
+      "loaderOpacity": "1",
+      "circles": [
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        },
+        {
+          "cls": "absolute top-1/2 left-1/2 -tra",
+          "transform": "translate(-50%, -50%)"
+        }
+      ],
+      "logo": {
+        "transform": "translate3d(0px, -1631.4px, 0px) scale(4.2628, 4.2628)",
+        "opacity": "1"
+      },
+      "foods": [
+        {
+          "transform": "translate3d(-1361.05px, 797.213px, 0px) scale(10.5507, 10.5507)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(-1188.45px, -1323.64px, 0px) scale(9.8604, 9.8604)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(1369.51px, -555.044px, 0px) scale(8.9798, 8.9798)",
+          "opacity": "1"
+        },
+        {
+          "transform": "translate3d(1096.45px, 969.98px, 0px) scale(7.8856, 7.8856)",
+          "opacity": "1"
+        }
+      ]
+    }
+  }
+]
