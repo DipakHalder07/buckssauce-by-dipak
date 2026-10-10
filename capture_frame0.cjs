@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const tmpDir = path.join(process.env.TEMP, 'chrome_frame0_' + Date.now());
+const tmpDir = path.join(process.env.TEMP, 'chrome_frame_timeline_' + Date.now());
 
 const chrome = spawn('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', [
   '--headless=new',
@@ -26,23 +26,26 @@ setTimeout(async () => {
     };
 
     let count = 0;
+    const delays = [100, 300, 600, 1000, 1500, 2000, 2500];
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
       if (msg.method === 'Page.frameNavigated') {
-        // Take screenshot at 10ms, 50ms, 100ms
-        [10, 30, 60, 100].forEach((delay, i) => {
+        delays.forEach((delay, i) => {
           setTimeout(() => {
             ws.send(JSON.stringify({ id: 100 + i, method: 'Page.captureScreenshot', params: { format: 'png' } }));
           }, delay);
         });
       }
       if (msg.id >= 100 && msg.result?.data) {
-        fs.writeFileSync(path.join(__dirname, `frame_init_${msg.id - 100}.png`), Buffer.from(msg.result.data, 'base64'));
-        console.log(`Saved frame_init_${msg.id - 100}.png`);
+        const frameIdx = msg.id - 100;
+        fs.writeFileSync(path.join(__dirname, `timeline_shot_${frameIdx}.png`), Buffer.from(msg.result.data, 'base64'));
+        console.log(`Saved timeline_shot_${frameIdx}.png (delay: ${delays[frameIdx]}ms)`);
         count++;
-        if (count >= 4) {
-          chrome.kill();
-          process.exit(0);
+        if (count >= delays.length) {
+          setTimeout(() => {
+            chrome.kill();
+            process.exit(0);
+          }, 300);
         }
       }
     };
