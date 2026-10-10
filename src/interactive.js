@@ -323,7 +323,286 @@ document.querySelectorAll('.group\\/button').forEach(btn => {
   }
 });
 
-initHero();
+// =========================================================================
+// PAGE LOADER & HERO ENTRANCE (Awwwards / CodeGrid Bucks Sauce Reveal)
+// =========================================================================
+const preloader = document.getElementById('bucks-preloader');
+
+function runPageLoader() {
+  initHero();
+
+  if (!preloader) {
+    animateHeroEntrance();
+    return;
+  }
+
+  const logo = preloader.querySelector('.loader-logo');
+  const badge = preloader.querySelector('.loader-badge');
+  const peach = preloader.querySelector('.loader-fruit-peach');
+  const pineapple = preloader.querySelector('.loader-fruit-pineapple');
+  const habanero = preloader.querySelector('.loader-fruit-habanero');
+  const cherry = preloader.querySelector('.loader-fruit-cherry');
+
+  const rev1 = preloader.querySelector('.loader-revealer-1');
+  const rev2 = preloader.querySelector('.loader-revealer-2');
+  const rev3 = preloader.querySelector('.loader-revealer-3');
+  const rev4 = preloader.querySelector('.loader-revealer-4');
+
+  // Lock scrolling during preloader
+  lenis.stop();
+  document.body.style.overflow = 'hidden';
+
+  // Master Loader Timeline
+  const tl = gsap.timeline({
+    onComplete: () => {
+      lenis.start();
+      document.body.style.overflow = '';
+      preloader.style.display = 'none';
+      preloader.style.pointerEvents = 'none';
+    }
+  });
+
+  // 1. Logo & Badge entrance from center
+  tl.fromTo(logo, 
+    { scale: 0.65, opacity: 0, y: 30 },
+    { scale: 1, opacity: 1, y: 0, duration: 0.65, ease: 'back.out(1.4)' }
+  );
+
+  tl.fromTo(badge,
+    { opacity: 0, letterSpacing: '0.45em' },
+    { opacity: 1, letterSpacing: '0.25em', duration: 0.5, ease: 'power2.out' },
+    '-=0.35'
+  );
+
+  // 2. 4 Fruits fly in from diagonal quadrants into orbital positions around logo
+  tl.fromTo(peach,
+    { x: -280, y: -220, rotation: -35, opacity: 0, scale: 0.5 },
+    { x: -160, y: -95, rotation: -12, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
+    0.25
+  );
+
+  tl.fromTo(pineapple,
+    { x: 280, y: -220, rotation: 35, opacity: 0, scale: 0.5 },
+    { x: 160, y: -90, rotation: 15, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
+    0.3
+  );
+
+  tl.fromTo(habanero,
+    { x: -280, y: 220, rotation: -30, opacity: 0, scale: 0.5 },
+    { x: -150, y: 105, rotation: -8, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
+    0.35
+  );
+
+  tl.fromTo(cherry,
+    { x: 280, y: 220, rotation: 30, opacity: 0, scale: 0.5 },
+    { x: 150, y: 105, rotation: 14, opacity: 1, scale: 1, duration: 0.65, ease: 'power3.out' },
+    0.4
+  );
+
+  // Subtle breathing float in place for 0.4s
+  tl.to([peach, pineapple, habanero, cherry], {
+    y: '+=8',
+    rotation: '+=3',
+    duration: 0.4,
+    yoyo: true,
+    repeat: 1,
+    ease: 'sine.inOut'
+  }, 0.9);
+
+  // 3. Fruits & Logo exit (burst outward and fade)
+  tl.to([peach, pineapple, habanero, cherry], {
+    scale: 1.25,
+    opacity: 0,
+    duration: 0.35,
+    stagger: 0.03,
+    ease: 'power2.in'
+  }, 1.35);
+
+  tl.to(logo, {
+    scale: 0.85,
+    opacity: 0,
+    duration: 0.35,
+    ease: 'power2.in'
+  }, 1.4);
+
+  // 4. Concentric circular revealers expand outward in colored waves
+  tl.to(rev1, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.5);
+  tl.to(rev2, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.65);
+  tl.to(rev3, { clipPath: 'circle(150% at 50% 50%)', duration: 0.75, ease: 'power3.inOut' }, 1.8);
+  tl.to(rev4, { clipPath: 'circle(150% at 50% 50%)', duration: 0.8, ease: 'power3.inOut' }, 1.95);
+
+  // 5. Trigger Hero Section Entrance as the reveal completes!
+  tl.add(() => {
+    animateHeroEntrance();
+  }, 2.1);
+
+  tl.to(preloader, {
+    opacity: 0,
+    duration: 0.35,
+    ease: 'power2.out'
+  }, 2.4);
+}
+
+function animateHeroEntrance() {
+  const header = document.querySelector('header') || document.querySelector('[data-nav]');
+  const title = document.querySelector('[data-title]');
+  const bottle0 = bottles[0];
+  const bgCircle = document.querySelector('[data-bg-circle]');
+  const frontFruit0 = frontFruits[0];
+  const backFruit0 = backFruits[0];
+  const middleBar = document.querySelector('[data-middle-bar]');
+  const bottomBar = document.querySelector('[data-bottom-bar]');
+
+  // Header drops in smoothly
+  if (header) {
+    gsap.fromTo(header,
+      { y: -60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
+    );
+  }
+
+  // Title words bounce up letter/word-by-word
+  if (title) {
+    const words = title.querySelectorAll('span > span');
+    if (words.length > 0) {
+      gsap.fromTo(words,
+        { y: '100%', opacity: 0 },
+        { y: '0%', opacity: 1, stagger: 0.04, duration: 0.7, ease: 'back.out(1.2)' }
+      );
+    } else {
+      gsap.fromTo(title, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.2)' });
+    }
+  }
+
+  // Background circle expands
+  if (bgCircle) {
+    gsap.fromTo(bgCircle,
+      { scale: 0.4, opacity: 0 },
+      { scale: 0.934, opacity: 1, duration: 0.75, ease: 'back.out(1.1)' }
+    );
+  }
+
+  // Hero bottle rises from below with spring
+  if (bottle0) {
+    gsap.fromTo(bottle0,
+      { y: 150, scale: 0.85, opacity: 0, rotation: 15 },
+      { y: 0, scale: 1, opacity: 1, rotation: 5, duration: 0.85, ease: 'back.out(1.3)' }
+    );
+  }
+
+  // Floating fruits pop in
+  if (frontFruit0) {
+    gsap.fromTo(frontFruit0,
+      { scale: 0, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.65, delay: 0.15, ease: 'back.out(1.4)' }
+    );
+  }
+  if (backFruit0) {
+    gsap.fromTo(backFruit0,
+      { scale: 0, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.65, delay: 0.2, ease: 'back.out(1.4)' }
+    );
+  }
+
+  // Tickers & bottom CTA bar fade in
+  if (middleBar) {
+    gsap.fromTo(middleBar, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, delay: 0.2, ease: 'power2.out' });
+  }
+  if (bottomBar) {
+    gsap.fromTo(bottomBar, { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, delay: 0.3, ease: 'power2.out' });
+  }
+}
+
+runPageLoader();
+
+// =========================================================================
+// HEADER SCROLL ANIMATION (Glassmorphism, Logo Scale & Directional Smart Nav)
+// =========================================================================
+const headerEl = document.querySelector('header') || document.querySelector('[data-nav]');
+const headerLogoEl = headerEl ? headerEl.querySelector('[data-logo]') : null;
+
+let lastScrollPosition = 0;
+let isHeaderFrosted = false;
+let isHeaderHidden = false;
+
+function onScrollUpdate(currentY) {
+  if (!headerEl) return;
+
+  // 1. Frosted Glass Transition & Logo Shrink
+  if (currentY > 40 && !isHeaderFrosted) {
+    isHeaderFrosted = true;
+    gsap.to(headerEl, {
+      backgroundColor: 'rgba(19, 16, 14, 0.92)',
+      backdropFilter: 'blur(16px)',
+      webkitBackdropFilter: 'blur(16px)',
+      borderBottom: '1px solid rgba(245, 228, 199, 0.08)',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.35)',
+      duration: 0.35,
+      ease: 'power2.out'
+    });
+    if (headerLogoEl) {
+      gsap.to(headerLogoEl, {
+        scale: 0.85,
+        duration: 0.35,
+        ease: 'power2.out',
+        transformOrigin: 'left center'
+      });
+    }
+  } else if (currentY <= 40 && isHeaderFrosted) {
+    isHeaderFrosted = false;
+    gsap.to(headerEl, {
+      backgroundColor: 'rgba(19, 16, 14, 0)',
+      backdropFilter: 'blur(0px)',
+      webkitBackdropFilter: 'blur(0px)',
+      borderBottom: '1px solid transparent',
+      boxShadow: 'none',
+      duration: 0.35,
+      ease: 'power2.out'
+    });
+    if (headerLogoEl) {
+      gsap.to(headerLogoEl, {
+        scale: 1,
+        duration: 0.35,
+        ease: 'power2.out',
+        transformOrigin: 'left center'
+      });
+    }
+  }
+
+  // 2. Smart Directional Hide/Show (Show on scroll up, Hide on scroll down past 280px)
+  const isDrawerOpen = (cartDrawer && cartDrawer.style.pointerEvents === 'auto') ||
+                       (menuDrawer && menuDrawer.style.pointerEvents === 'auto');
+
+  if (!isDrawerOpen) {
+    const delta = currentY - lastScrollPosition;
+    if (currentY > 280 && delta > 8 && !isHeaderHidden) {
+      isHeaderHidden = true;
+      gsap.to(headerEl, {
+        y: '-100%',
+        duration: 0.38,
+        ease: 'power2.inOut',
+        overwrite: 'auto'
+      });
+    } else if ((delta < -5 || currentY <= 50) && isHeaderHidden) {
+      isHeaderHidden = false;
+      gsap.to(headerEl, {
+        y: '0%',
+        duration: 0.35,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    }
+  }
+
+  lastScrollPosition = currentY;
+}
+
+lenis.on('scroll', (e) => {
+  onScrollUpdate(e.scroll);
+});
+window.addEventListener('scroll', () => {
+  onScrollUpdate(window.scrollY);
+}, { passive: true });
 
 // =========================================================================
 // 3. Section 1 ("Clean Ingredients") Stacked Cards Animation
@@ -354,16 +633,41 @@ if (sec1 && cards.length === 4) {
 }
 
 // =========================================================================
-// 4. Section 2 ("Choose Your Weapon") Product Cards & Cart Triggers
+// 4. Section 2 ("Choose Your Weapon") Titles, Cards & Antler Animations
 // =========================================================================
 const listingCards = document.querySelectorAll('[data-listing-card]');
 listingCards.forEach(card => {
   const bottleImg = card.querySelector('img');
+  const leftAntler = card.querySelector('[data-left-antler]');
+  const rightAntler = card.querySelector('[data-right-antler]');
+
+  // Antlers initial scale
+  if (leftAntler) gsap.set(leftAntler, { scale: 0, transformOrigin: 'bottom right' });
+  if (rightAntler) gsap.set(rightAntler, { scale: 0, transformOrigin: 'bottom left' });
+
+  // Antler pop-out hover effects
   card.addEventListener('mouseenter', () => {
-    if (bottleImg) gsap.to(bottleImg, { y: -8, scale: 1.04, duration: 0.35, ease: 'power2.out' });
+    if (bottleImg) {
+      gsap.to(bottleImg, { y: -12, scale: 1.05, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+    }
+    if (leftAntler) {
+      gsap.to(leftAntler, { scale: 1, duration: 0.45, ease: 'back.out(1.8)', overwrite: 'auto' });
+    }
+    if (rightAntler) {
+      gsap.to(rightAntler, { scale: 1, duration: 0.45, ease: 'back.out(1.8)', overwrite: 'auto' });
+    }
   });
+
   card.addEventListener('mouseleave', () => {
-    if (bottleImg) gsap.to(bottleImg, { y: 0, scale: 1, duration: 0.35, ease: 'power2.out' });
+    if (bottleImg) {
+      gsap.to(bottleImg, { y: 0, scale: 1, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+    }
+    if (leftAntler) {
+      gsap.to(leftAntler, { scale: 0, duration: 0.3, ease: 'power2.in', overwrite: 'auto' });
+    }
+    if (rightAntler) {
+      gsap.to(rightAntler, { scale: 0, duration: 0.3, ease: 'power2.in', overwrite: 'auto' });
+    }
   });
 
   const addBtn = card.querySelector('button, [data-button-bg]');
@@ -376,11 +680,86 @@ listingCards.forEach(card => {
   }
 });
 
+// Section 2 Title ("Choose your weapon") Scroll Reveal
+const sec2Titles = document.querySelectorAll('section:nth-of-type(3) [data-gsap-title-on-scroll]');
+sec2Titles.forEach((t, i) => {
+  gsap.fromTo(t,
+    { y: 60, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      delay: i * 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: t,
+        start: 'top 85%'
+      }
+    }
+  );
+});
+
+// Section 2 Listing Cards Stagger Entrance on Scroll
+if (listingCards.length > 0) {
+  gsap.fromTo(listingCards,
+    { y: 80, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.85,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: listingCards[0].closest('div') || listingCards[0],
+        start: 'top 82%'
+      }
+    }
+  );
+}
+
 // =========================================================================
-// 5. Section 3 ("Build Your 3-Pack & Save $4.00") Bundle Builder
+// 5. Section 3 ("Build Your 3-Pack & Save $4.00") Bundle Builder & Reveals
 // =========================================================================
 const bundleSection = document.querySelectorAll('section')[3];
 if (bundleSection) {
+  // Title reveal
+  const bundleTitle = bundleSection.querySelector('[data-gsap-title-on-scroll]');
+  if (bundleTitle) {
+    gsap.fromTo(bundleTitle,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: bundleTitle,
+          start: 'top 85%'
+        }
+      }
+    );
+  }
+
+  // Bottle list items slide in
+  const packList = bundleSection.querySelector('[data-gsap-slide-in-on-scroll]');
+  if (packList && packList.children.length > 0) {
+    gsap.fromTo(packList.children,
+      { y: 50, opacity: 0, scale: 0.94 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        stagger: 0.1,
+        duration: 0.75,
+        ease: 'back.out(1.2)',
+        scrollTrigger: {
+          trigger: packList,
+          start: 'top 82%'
+        }
+      }
+    );
+  }
+
   const packPlusButtons = bundleSection.querySelectorAll('button:not([data-button-bg] button)');
   const mainPackBtn = bundleSection.querySelector('[data-button-bg]')?.closest('button') || bundleSection.querySelectorAll('button')[4];
   let packCount = 0;
@@ -415,6 +794,28 @@ if (bundleSection) {
     });
   }
 }
+
+// =========================================================================
+// Floating Ingredients Parallax Scroll ([data-parallax-food])
+// =========================================================================
+const parallaxFoods = document.querySelectorAll('[data-parallax-food]');
+parallaxFoods.forEach(food => {
+  const speed = parseFloat(food.getAttribute('data-parallax-speed'));
+  if (isNaN(speed) || speed === 0) return;
+  const parent = food.closest('section') || food.parentElement;
+
+  gsap.to(food, {
+    y: -90 * speed,
+    rotation: speed * 6,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: parent,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.2
+    }
+  });
+});
 
 // =========================================================================
 // 6. Section 4 ("Why Bucks Sauce") Interactive Reasons
@@ -522,50 +923,60 @@ const menuDrawer = document.querySelector('[data-menu]');
 
 export function openCart() {
   if (cartDrawer) {
-    cartDrawer.classList.remove('pointer-events-none', 'invisible', 'opacity-0');
-    cartDrawer.classList.add('pointer-events-auto', 'opacity-100');
+    cartDrawer.style.pointerEvents = 'auto';
+    gsap.to(cartDrawer, {
+      opacity: 1,
+      duration: 0.35,
+      ease: 'power2.out'
+    });
     const inner = cartDrawer.querySelector('[data-cart-inner]');
     if (inner) {
-      gsap.fromTo(inner, { x: '100%' }, { x: '0%', duration: 0.45, ease: 'power3.out' });
+      gsap.fromTo(inner, { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
     }
+    const emptyMsg = cartDrawer.querySelectorAll('[data-is-empty], [data-cart-content], .flex-col.gap-10');
+    emptyMsg.forEach(el => {
+      gsap.to(el, { opacity: 1, duration: 0.3, delay: 0.1 });
+    });
   }
 }
 
 export function closeCart() {
   if (cartDrawer) {
-    const inner = cartDrawer.querySelector('[data-cart-inner]');
-    if (inner) {
-      gsap.to(inner, {
-        x: '100%',
-        duration: 0.35,
-        ease: 'power3.in',
-        onComplete: () => {
-          cartDrawer.classList.add('pointer-events-none', 'invisible', 'opacity-0');
-          cartDrawer.classList.remove('pointer-events-auto', 'opacity-100');
-        }
-      });
-    }
+    cartDrawer.style.pointerEvents = 'none';
+    gsap.to(cartDrawer, {
+      opacity: 0,
+      duration: 0.25,
+      ease: 'power2.in'
+    });
   }
 }
 
 function openMenu() {
   if (menuDrawer) {
-    menuDrawer.classList.remove('pointer-events-none', 'invisible', 'opacity-0');
-    menuDrawer.classList.add('pointer-events-auto', 'opacity-100');
-    gsap.fromTo(menuDrawer, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+    menuDrawer.style.pointerEvents = 'auto';
+    gsap.to(menuDrawer, {
+      opacity: 1,
+      duration: 0.35,
+      ease: 'power2.out'
+    });
+    const menuItems = menuDrawer.querySelectorAll('[data-menu-items] li, a');
+    gsap.to(menuItems, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.35,
+      ease: 'power2.out'
+    });
   }
 }
 
 function closeMenu() {
   if (menuDrawer) {
+    menuDrawer.style.pointerEvents = 'none';
     gsap.to(menuDrawer, {
       opacity: 0,
-      duration: 0.3,
-      ease: 'power2.in',
-      onComplete: () => {
-        menuDrawer.classList.add('pointer-events-none', 'invisible', 'opacity-0');
-        menuDrawer.classList.remove('pointer-events-auto', 'opacity-100');
-      }
+      duration: 0.25,
+      ease: 'power2.in'
     });
   }
 }
