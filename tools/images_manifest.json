@@ -1,0 +1,935 @@
+{
+  "count": 50,
+  "images": [
+    {
+      "id": 1,
+      "filename": "img_1.avif",
+      "path": "/images/img_1.avif",
+      "mime": "avif",
+      "size": 90795,
+      "hash": "059ccbd53a4bdbac44b667a8b0ee591a"
+    },
+    {
+      "id": 2,
+      "filename": "img_2.avif",
+      "path": "/images/img_2.avif",
+      "mime": "avif",
+      "size": 36492,
+      "hash": "aee0cfbbf734293bc04aed03bc1e718c"
+    },
+    {
+      "id": 3,
+      "filename": "img_3.avif",
+      "path": "/images/img_3.avif",
+      "mime": "avif",
+      "size": 50904,
+      "hash": "01ddd2565657ecf2df3fe6c8f682f81a"
+    },
+    {
+      "id": 4,
+      "filename": "img_4.avif",
+      "path": "/images/img_4.avif",
+      "mime": "avif",
+      "size": 81980,
+      "hash": "8f1e1717c00d09c29ad4e97208af13be"
+    },
+    {
+      "id": 5,
+      "filename": "img_5.avif",
+      "path": "/images/img_5.avif",
+      "mime": "avif",
+      "size": 77783,
+      "hash": "f22948242f309a08f11156938f3476b6"
+    },
+    {
+      "id": 6,
+      "filename": "img_6_empty_bottle.webp",
+      "path": "/images/img_6_empty_bottle.webp",
+      "mime": "webp",
+      "size": 63046,
+      "hash": "9842fe08c520ff6b6739d51a92505392"
+    },
+    {
+      "id": 7,
+      "filename": "img_7.avif",
+      "path": "/images/img_7.avif",
+      "mime": "avif",
+      "size": 21774,
+      "hash": "9c7e88b266d70a7d9b732a92a49ec204"
+    },
+    {
+      "id": 8,
+      "filename": "img_8.avif",
+      "path": "/images/img_8.avif",
+      "mime": "avif",
+      "size": 28816,
+      "hash": "515e28a7c13bb0e172099a750252c552"
+    },
+    {
+      "id": 9,
+      "filename": "img_9.avif",
+      "path": "/images/img_9.avif",
+      "mime": "avif",
+      "size": 26320,
+      "hash": "b2709c6ad6cc94bba51fa947a758c196"
+    },
+    {
+      "id": 10,
+      "filename": "img_10.avif",
+      "path": "/images/img_10.avif",
+      "mime": "avif",
+      "size": 26639,
+      "hash": "b67a6521e979afc85e4d78e94060efce"
+    },
+    {
+      "id": 11,
+      "filename": "img_11.avif",
+      "path": "/images/img_11.avif",
+      "mime": "avif",
+      "size": 26340,
+      "hash": "d843166ce57122a49b113cfe8ea40152"
+    },
+    {
+      "id": 12,
+      "filename": "img_12.avif",
+      "path": "/images/img_12.avif",
+      "mime": "avif",
+      "size": 8601,
+      "hash": "4c0669fd6d8745a8ed317e930e5a3a8f"
+    },
+    {
+      "id": 13,
+      "filename": "img_13.avif",
+      "path": "/images/img_13.avif",
+      "mime": "avif",
+      "size": 5649,
+      "hash": "1bc65314f81b2f5f82933a499cd1abf5"
+    },
+    {
+      "id": 14,
+      "filename": "img_14.avif",
+      "path": "/images/img_14.avif",
+      "mime": "avif",
+      "size": 5485,
+      "hash": "6cbb09925eb73dc32f22a98ca19970ae"
+    },
+    {
+      "id": 15,
+      "filename": "img_15.avif",
+      "path": "/images/img_15.avif",
+      "mime": "avif",
+      "size": 8665,
+      "hash": "7ea233b94a9083cbb20d3397b1085ea7"
+    },
+    {
+      "id": 16,
+      "filename": "img_16.avif",
+      "path": "/images/img_16.avif",
+      "mime": "avif",
+      "size": 11397,
+      "hash": "bc74256fed82020804957590daaf221d"
+    },
+    {
+      "id": 17,
+      "filename": "img_17.avif",
+      "path": "/images/img_17.avif",
+      "mime": "avif",
+      "size": 11552,
+      "hash": "6d4bd3b15c47a10497be6e3c192d0489"
+    },
+    {
+      "id": 18,
+      "filename": "img_18_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_18_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 17206,
+      "hash": "e06cca000f5c3f8e54469379bb9ffd15"
+    },
+    {
+      "id": 19,
+      "filename": "img_19_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_19_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 26626,
+      "hash": "e8bbb59d4fdb9652704c5940a82a803f"
+    },
+    {
+      "id": 20,
+      "filename": "img_20_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_20_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 15468,
+      "hash": "18cf945444d58127fcfb6159f7c939f4"
+    },
+    {
+      "id": 21,
+      "filename": "img_21_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_21_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 18348,
+      "hash": "eee8596f75317a9ad2ce7acfc623d960"
+    },
+    {
+      "id": 22,
+      "filename": "img_22_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_22_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 25494,
+      "hash": "819a2684dee08b34732e609670e5ed41"
+    },
+    {
+      "id": 23,
+      "filename": "img_23_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_23_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 18674,
+      "hash": "5eeb0b08187a59d20c5ce3abda87b0da"
+    },
+    {
+      "id": 24,
+      "filename": "img_24_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_24_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 23976,
+      "hash": "7957935b89ef675736513a216d56af70"
+    },
+    {
+      "id": 25,
+      "filename": "img_25_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_25_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 31240,
+      "hash": "d5902c76be569d9d6ae6657d1fe3ce02"
+    },
+    {
+      "id": 26,
+      "filename": "img_26_no_hfc.svg",
+      "path": "/images/img_26_no_hfc.svg",
+      "mime": "svg+xml",
+      "size": 2711,
+      "hash": "cce7611e2bf3c203d987a08ec2432d79"
+    },
+    {
+      "id": 27,
+      "filename": "img_27_no_seed_oils_loading_lazy_widt.svg",
+      "path": "/images/img_27_no_seed_oils_loading_lazy_widt.svg",
+      "mime": "svg+xml",
+      "size": 1122,
+      "hash": "658bbae086f306da5be431870685f725"
+    },
+    {
+      "id": 28,
+      "filename": "img_28_no_additives_loading_lazy_widt.svg",
+      "path": "/images/img_28_no_additives_loading_lazy_widt.svg",
+      "mime": "svg+xml",
+      "size": 1674,
+      "hash": "d7e02a07a0f3c53e7d575db17842c9d9"
+    },
+    {
+      "id": 29,
+      "filename": "img_29_gluten_free_loading_lazy_width.svg",
+      "path": "/images/img_29_gluten_free_loading_lazy_width.svg",
+      "mime": "svg+xml",
+      "size": 2453,
+      "hash": "c2ec6e856766a2d48d6f6ba0e4920f23"
+    },
+    {
+      "id": 30,
+      "filename": "img_30_bottle.avif",
+      "path": "/images/img_30_bottle.avif",
+      "mime": "avif",
+      "size": 28639,
+      "hash": "07513aba9adc47d31c6827abdb59fd55"
+    },
+    {
+      "id": 31,
+      "filename": "img_31_pineapple_draggable_false_load.avif",
+      "path": "/images/img_31_pineapple_draggable_false_load.avif",
+      "mime": "avif",
+      "size": 9601,
+      "hash": "04745bcfae3e6b3c184dbaa1747e33a2"
+    },
+    {
+      "id": 32,
+      "filename": "img_32_pineapple_draggable_false_load.avif",
+      "path": "/images/img_32_pineapple_draggable_false_load.avif",
+      "mime": "avif",
+      "size": 12305,
+      "hash": "65b078f3db5739b8d30f1fa6b3d80b4f"
+    },
+    {
+      "id": 33,
+      "filename": "img_33_habanero_draggable_false_loadi.avif",
+      "path": "/images/img_33_habanero_draggable_false_loadi.avif",
+      "mime": "avif",
+      "size": 8498,
+      "hash": "25d79ec6eeed91230740a10d820e6573"
+    },
+    {
+      "id": 34,
+      "filename": "img_34_habanero_draggable_false_loadi.avif",
+      "path": "/images/img_34_habanero_draggable_false_loadi.avif",
+      "mime": "avif",
+      "size": 5490,
+      "hash": "72cfe0b8c77f1089212eb6727eba16fb"
+    },
+    {
+      "id": 35,
+      "filename": "img_35_cherry_front.avif",
+      "path": "/images/img_35_cherry_front.avif",
+      "mime": "avif",
+      "size": 9203,
+      "hash": "b17c435a07eea873c036e43bbf307373"
+    },
+    {
+      "id": 36,
+      "filename": "img_36_cherry_back.avif",
+      "path": "/images/img_36_cherry_back.avif",
+      "mime": "avif",
+      "size": 5430,
+      "hash": "0010f0ef1d1ded465f40924871afddab"
+    },
+    {
+      "id": 37,
+      "filename": "img_37.avif",
+      "path": "/images/img_37.avif",
+      "mime": "avif",
+      "size": 24075,
+      "hash": "2414302fda24d0a1c30405ba606705e8"
+    },
+    {
+      "id": 38,
+      "filename": "img_38.webp",
+      "path": "/images/img_38.webp",
+      "mime": "webp",
+      "size": 17950,
+      "hash": "f06b12745d1dc222b586338f2df42d0b"
+    },
+    {
+      "id": 39,
+      "filename": "img_39.webp",
+      "path": "/images/img_39.webp",
+      "mime": "webp",
+      "size": 18070,
+      "hash": "9dce7ce6ae62a85295332447a229ad97"
+    },
+    {
+      "id": 40,
+      "filename": "img_40.webp",
+      "path": "/images/img_40.webp",
+      "mime": "webp",
+      "size": 17648,
+      "hash": "2f62847cad2e3e582b1e999e4963734d"
+    },
+    {
+      "id": 41,
+      "filename": "img_41.webp",
+      "path": "/images/img_41.webp",
+      "mime": "webp",
+      "size": 18732,
+      "hash": "284704f0016ae89b7e0564a7d1e759b5"
+    },
+    {
+      "id": 42,
+      "filename": "img_42.svg",
+      "path": "/images/img_42.svg",
+      "mime": "svg+xml",
+      "size": 16737,
+      "hash": "80eec79979a13e83c0d8e3b5ab87f387"
+    },
+    {
+      "id": 43,
+      "filename": "img_43_food_loading_lazy_width_400_he.webp",
+      "path": "/images/img_43_food_loading_lazy_width_400_he.webp",
+      "mime": "webp",
+      "size": 8438,
+      "hash": "2244e9ceac7eb842a0b1226a6074fad3"
+    },
+    {
+      "id": 44,
+      "filename": "img_44.png",
+      "path": "/images/img_44.png",
+      "mime": "png",
+      "size": 729,
+      "hash": "fe18703bc2f2e2198248c1e3a821b045"
+    },
+    {
+      "id": 45,
+      "filename": "img_45_bg.avif",
+      "path": "/images/img_45_bg.avif",
+      "mime": "avif",
+      "size": 14500,
+      "hash": "3696e98254dbb46e219f77815ea57165"
+    },
+    {
+      "id": 46,
+      "filename": "img_46_bg.png",
+      "path": "/images/img_46_bg.png",
+      "mime": "png",
+      "size": 9710,
+      "hash": "e315455c08d8c53eaaec1e110b49c0fb"
+    },
+    {
+      "id": 47,
+      "filename": "img_47_bg.png",
+      "path": "/images/img_47_bg.png",
+      "mime": "png",
+      "size": 14183,
+      "hash": "f221c500e79baad907e691aca86a9f93"
+    },
+    {
+      "id": 48,
+      "filename": "img_48_bg.png",
+      "path": "/images/img_48_bg.png",
+      "mime": "png",
+      "size": 16764,
+      "hash": "7b69e5ef5acdd56a7f1a1a2599072e3b"
+    },
+    {
+      "id": 49,
+      "filename": "img_49_bg.png",
+      "path": "/images/img_49_bg.png",
+      "mime": "png",
+      "size": 15518,
+      "hash": "8da3125c4f75b78ae0c1cd2c08433206"
+    },
+    {
+      "id": 50,
+      "filename": "img_50_bg.png",
+      "path": "/images/img_50_bg.png",
+      "mime": "png",
+      "size": 15245,
+      "hash": "d41312e25ae8cca1bcabe31e40adcfef"
+    }
+  ],
+  "usage": [
+    {
+      "imgIndex": 1,
+      "savedFile": "img_1.avif",
+      "w": "100",
+      "h": "100",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 2,
+      "savedFile": "img_2.avif",
+      "w": "1000",
+      "h": "1000",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 3,
+      "savedFile": "img_3.avif",
+      "w": "1280",
+      "h": "1280",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 4,
+      "savedFile": "img_4.avif",
+      "w": "1000",
+      "h": "1000",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 5,
+      "savedFile": "img_5.avif",
+      "w": "500",
+      "h": "500",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 6,
+      "savedFile": "img_6_empty_bottle.webp",
+      "w": "290",
+      "h": "290",
+      "alt": "empty bottle",
+      "hint": "empty bottle"
+    },
+    {
+      "imgIndex": 7,
+      "savedFile": "img_7.avif",
+      "w": "460",
+      "h": "1202",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 8,
+      "savedFile": "img_8.avif",
+      "w": "460",
+      "h": "1202",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 9,
+      "savedFile": "img_9.avif",
+      "w": "460",
+      "h": "1202",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 10,
+      "savedFile": "img_10.avif",
+      "w": "460",
+      "h": "1202",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 11,
+      "savedFile": "img_11.avif",
+      "w": "476",
+      "h": "458",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 12,
+      "savedFile": "img_12.avif",
+      "w": "234",
+      "h": "269",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 13,
+      "savedFile": "img_13.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 14,
+      "savedFile": "img_14.avif",
+      "w": "177",
+      "h": "245",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 15,
+      "savedFile": "img_15.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 16,
+      "savedFile": "img_16.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 17,
+      "savedFile": "img_17.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 18,
+      "savedFile": "img_18_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 19,
+      "savedFile": "img_19_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 20,
+      "savedFile": "img_20_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 21,
+      "savedFile": "img_21_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 22,
+      "savedFile": "img_22_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 23,
+      "savedFile": "img_23_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 24,
+      "savedFile": "img_24_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 25,
+      "savedFile": "img_25_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 26,
+      "savedFile": "img_26_no_hfc.svg",
+      "w": "103",
+      "h": "102",
+      "alt": "no hfc",
+      "hint": "no hfc"
+    },
+    {
+      "imgIndex": 27,
+      "savedFile": "img_27_no_seed_oils_loading_lazy_widt.svg",
+      "w": "102",
+      "h": "102",
+      "alt": "no-seed-oils loading=lazy width=102 height=102 decoding=async data-nimg=1 class=",
+      "hint": "no-seed-oils loading=lazy width=102 height=102 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 28,
+      "savedFile": "img_28_no_additives_loading_lazy_widt.svg",
+      "w": "103",
+      "h": "102",
+      "alt": "no-additives loading=lazy width=103 height=102 decoding=async data-nimg=1 class=",
+      "hint": "no-additives loading=lazy width=103 height=102 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 29,
+      "savedFile": "img_29_gluten_free_loading_lazy_width.svg",
+      "w": "103",
+      "h": "102",
+      "alt": "gluten-free loading=lazy width=103 height=102 decoding=async data-nimg=1 class=",
+      "hint": "gluten-free loading=lazy width=103 height=102 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 30,
+      "savedFile": "img_30_bottle.avif",
+      "w": "140",
+      "h": "350",
+      "alt": "",
+      "hint": "bottle"
+    },
+    {
+      "imgIndex": 31,
+      "savedFile": "img_31_pineapple_draggable_false_load.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "pineapple draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class=",
+      "hint": "pineapple draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 32,
+      "savedFile": "img_32_pineapple_draggable_false_load.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "pineapple draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class=",
+      "hint": "pineapple draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 33,
+      "savedFile": "img_9.avif",
+      "w": "140",
+      "h": "350",
+      "alt": "",
+      "hint": "bottle"
+    },
+    {
+      "imgIndex": 34,
+      "savedFile": "img_33_habanero_draggable_false_loadi.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "habanero draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class=",
+      "hint": "habanero draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 35,
+      "savedFile": "img_34_habanero_draggable_false_loadi.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "habanero draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class=",
+      "hint": "habanero draggable=false loading=lazy width=300 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 36,
+      "savedFile": "img_10.avif",
+      "w": "140",
+      "h": "350",
+      "alt": "",
+      "hint": "bottle"
+    },
+    {
+      "imgIndex": 37,
+      "savedFile": "img_35_cherry_front.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "cherry front",
+      "hint": "cherry front"
+    },
+    {
+      "imgIndex": 38,
+      "savedFile": "img_36_cherry_back.avif",
+      "w": "300",
+      "h": "300",
+      "alt": "cherry back",
+      "hint": "cherry back"
+    },
+    {
+      "imgIndex": 39,
+      "savedFile": "img_7.avif",
+      "w": "140",
+      "h": "350",
+      "alt": "",
+      "hint": "bottle"
+    },
+    {
+      "imgIndex": 40,
+      "savedFile": "img_37.avif",
+      "w": "476",
+      "h": "465",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 41,
+      "savedFile": "img_38.webp",
+      "w": "256",
+      "h": "627",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 42,
+      "savedFile": "img_39.webp",
+      "w": "256",
+      "h": "627",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 43,
+      "savedFile": "img_40.webp",
+      "w": "256",
+      "h": "627",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 44,
+      "savedFile": "img_41.webp",
+      "w": "256",
+      "h": "627",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 45,
+      "savedFile": "img_42.svg",
+      "w": "128",
+      "h": "314",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 46,
+      "savedFile": "img_42.svg",
+      "w": "128",
+      "h": "314",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 47,
+      "savedFile": "img_42.svg",
+      "w": "128",
+      "h": "314",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 48,
+      "savedFile": "img_43_food_loading_lazy_width_400_he.webp",
+      "w": "400",
+      "h": "300",
+      "alt": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class=",
+      "hint": "food loading=lazy width=400 height=300 decoding=async data-nimg=1 class="
+    },
+    {
+      "imgIndex": 49,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 50,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 51,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 52,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 53,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 54,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 55,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 56,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 57,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 58,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 59,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 60,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 61,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 62,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 63,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 64,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 65,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    },
+    {
+      "imgIndex": 66,
+      "savedFile": "img_44.png",
+      "w": "",
+      "h": "",
+      "alt": "",
+      "hint": ""
+    }
+  ]
+}

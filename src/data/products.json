@@ -1,0 +1,92 @@
+{
+  "heroBottles": [
+    {
+      "id": 1,
+      "name": "Smoked Peach Chipotle",
+      "color": "#ef8f4a",
+      "bgRgb": "rgb(239, 143, 74)",
+      "img": "/images/img_10.avif"
+    },
+    {
+      "id": 2,
+      "name": "Crushed Pineapple Sriracha",
+      "color": "#be8d3f",
+      "bgRgb": "rgb(190, 141, 63)",
+      "img": "/images/img_7.avif"
+    },
+    {
+      "id": 3,
+      "name": "Crushed Habanero Garlic",
+      "color": "#f15726",
+      "bgRgb": "rgb(241, 87, 38)",
+      "img": "/images/img_8.avif"
+    },
+    {
+      "id": 4,
+      "name": "Crushed Cherry Garlic",
+      "color": "#da1f27",
+      "bgRgb": "rgb(218, 31, 39)",
+      "img": "/images/img_9.avif"
+    }
+  ],
+  "listingProducts": [
+    {
+      "id": "pineapple-sriracha",
+      "title": "Crushed Pineapple Sriracha",
+      "price": "$12.00",
+      "description": "Sweet crushed pineapple hits first, followed by a warm sriracha kick.",
+      "bottleImg": "/images/img_14.webp",
+      "badge": "Sweet & Tangy Heat",
+      "ingredients": "Crushed Pineapple, Chili, Garlic, Vinegar, Sea Salt"
+    },
+    {
+      "id": "habanero-garlic",
+      "title": "Crushed Habanero Garlic",
+      "price": "$12.00",
+      "description": "Fiery habanero peppers roasted with pungent garlic for savory intensity.",
+      "bottleImg": "/images/img_15.webp",
+      "badge": "Savory Bold Heat",
+      "ingredients": "Habanero Peppers, Roasted Garlic, Tomatoes, Molasses"
+    },
+    {
+      "id": "cherry-garlic",
+      "title": "Crushed Cherry Garlic",
+      "price": "$12.00",
+      "description": "Tart dark cherries blended with slow-roasted garlic and rich spices.",
+      "bottleImg": "/images/img_16.webp",
+      "badge": "Rich Umami Blend",
+      "ingredients": "Dark Cherries, Roasted Garlic, Apple Cider Vinegar, Pepper"
+    },
+    {
+      "id": "peach-chipotle",
+      "title": "Smoked Peach Chipotle",
+      "price": "$12.00",
+      "description": "Ripe summer peaches smoked over hickory wood with earthy chipotle peppers.",
+      "bottleImg": "/images/img_17.webp",
+      "badge": "Smoky Sweet Kick",
+      "ingredients": "Smoked Peaches, Chipotle Chili, Smoked Paprika, Onion"
+    }
+  ],
+  "featureIcons": [
+    {
+      "title": "no corn syrup",
+      "desc": "Sweet is fine. Sugar-lab sweet is not. So we left the high fructose corn syrup on the bottom shelf where it belongs.",
+      "icon": "/images/img_27.svg"
+    },
+    {
+      "title": "No seed oils",
+      "desc": "We skip the ultra-processed seed oils and use ingredients that actually belong in food. If it reads like a chemistry project, it’s not in this bottle.",
+      "icon": "/images/img_28.svg"
+    },
+    {
+      "title": "no additives",
+      "desc": "No preservatives. No artificial nonsense. No “what is that?” ingredients hiding behind words you can’t pronounce.",
+      "icon": "/images/img_29.svg"
+    },
+    {
+      "title": "Gluten Free",
+      "desc": "No gluten. No thickening tricks. No drama. Just sauce that plays nice with your diet and acts up on the grill.",
+      "icon": "/images/img_30.svg"
+    }
+  ]
+}
