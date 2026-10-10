@@ -369,7 +369,15 @@ function runPageLoader() {
   if (heroSection) {
     gsap.set(heroSection, { y: 0.2 * window.innerHeight, opacity: 0 });
   }
-  gsap.set(circles, { scale: 0, transformOrigin: 'center center' });
+  gsap.set(circles, {
+    xPercent: -50,
+    yPercent: -50,
+    x: 0,
+    y: 0,
+    scale: 0,
+    transformOrigin: '50% 50%',
+    force3D: true
+  });
   if (logo) {
     gsap.set(logo, { scale: 0, opacity: 0, transformOrigin: '50% 50%' });
   }
@@ -427,6 +435,8 @@ function runPageLoader() {
       transformOrigin: '50% 50%',
       top: '50%',
       left: '50%',
+      bottom: 'auto',
+      right: 'auto',
       xPercent: -50,
       yPercent: -50
     });
@@ -463,6 +473,10 @@ function runPageLoader() {
   // 1. Concentric Circles Expand (Gold, Orange, Red, Dark Background)
   tl.to(circles, {
     scale: 1,
+    xPercent: -50,
+    yPercent: -50,
+    x: 0,
+    y: 0,
     duration: 1.6,
     ease: 'power2.inOut',
     stagger: 0.2
