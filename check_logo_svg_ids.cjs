@@ -1,0 +1,13 @@
+const fs = require('fs');
+const cheerio = require('cheerio');
+const $ = cheerio.load(fs.readFileSync('index.html', 'utf8'));
+const loader = $('#bucks-preloader');
+const svg = loader.find('[data-logo] svg');
+console.log('svg found:', svg.length);
+console.log('#left-horn found:', svg.find('#left-horn').length);
+console.log('#right-horn found:', svg.find('#right-horn').length);
+console.log('#bucks found:', svg.find('#bucks').length);
+console.log('#bucks path count:', svg.find('#bucks path').length);
+console.log('#sauce found:', svg.find('#sauce').length);
+console.log('#sauce path count:', svg.find('#sauce path').length);
+console.log('#head found:', svg.find('#head').length);

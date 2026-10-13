@@ -1,0 +1,236 @@
+{
+  "live": {
+    "preloaderRect": {},
+    "logoContainer": {
+      "className": "pointer-events-none absolute inset-0 flex items-center justify-center",
+      "styleAttr": "translate: none; rotate: none; scale: none; transform-origin: 50% 50%; opacity: 1; transform: translate(0px, 0px);",
+      "rect": {},
+      "computed": {
+        "display": "flex",
+        "position": "absolute",
+        "top": "0px",
+        "left": "0px",
+        "width": "1409px",
+        "height": "805px",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "transformOrigin": "704.5px 402.5px"
+      }
+    },
+    "svg": {
+      "className": "h-75 w-auto",
+      "widthAttr": "118",
+      "heightAttr": "142",
+      "viewBox": "0 0 118 142",
+      "styleAttr": null,
+      "rect": {},
+      "computed": {
+        "width": "249.281px",
+        "height": "300px",
+        "maxHeight": "none"
+      }
+    },
+    "foods": [
+      {
+        "index": 0,
+        "className": "absolute h-25 w-25 md:h-40 md:w-40 bottom-[4%] lg:bottom-[10%] left-[10%] lg:left-[15%]",
+        "rect": {},
+        "computed": {
+          "width": "160px",
+          "height": "160px",
+          "top": "564.5px",
+          "bottom": "80.5px",
+          "left": "211.344px",
+          "right": "1037.66px"
+        },
+        "img": {
+          "src": "/_next/image?url=%2Fimages%2Fpineapple-2.webp&w=3840&q=75&dpl=dpl_9ZZA3NxAiGDkunrFn3uhJ92DoT2i",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "160px",
+          "computedHeight": "183.891px"
+        }
+      },
+      {
+        "index": 1,
+        "className": "absolute h-25 w-25 md:h-35 md:w-35 top-[6%] lg:top-[12%] left-[10%] lg:left-[30%]",
+        "rect": {},
+        "computed": {
+          "width": "140px",
+          "height": "140px",
+          "top": "96.5938px",
+          "bottom": "568.406px",
+          "left": "422.688px",
+          "right": "846.312px"
+        },
+        "img": {
+          "src": "/_next/image?url=%2Fimages%2Fhabanero-2.webp&w=3840&q=75&dpl=dpl_9ZZA3NxAiGDkunrFn3uhJ92DoT2i",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "140px",
+          "computedHeight": "209.062px"
+        }
+      },
+      {
+        "index": 2,
+        "className": "absolute h-25 w-25 md:h-35 md:w-35 top-[5%] right-[5%] lg:top-[20%] lg:right-[15%]",
+        "rect": {},
+        "computed": {
+          "width": "140px",
+          "height": "140px",
+          "top": "161px",
+          "bottom": "504px",
+          "left": "1057.66px",
+          "right": "211.344px"
+        },
+        "img": {
+          "src": "/_next/image?url=%2Fimages%2Fcherry-2.webp&w=3840&q=75&dpl=dpl_9ZZA3NxAiGDkunrFn3uhJ92DoT2i",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "140px",
+          "computedHeight": "204.578px"
+        }
+      },
+      {
+        "index": 3,
+        "className": "absolute h-25 w-25 md:h-45 md:w-45 bottom-[5%] lg:bottom-[10%] right-[10%] lg:right-[25%]",
+        "rect": {},
+        "computed": {
+          "width": "180px",
+          "height": "180px",
+          "top": "544.5px",
+          "bottom": "80.5px",
+          "left": "876.75px",
+          "right": "352.25px"
+        },
+        "img": {
+          "src": "/_next/image?url=%2Fimages%2Fpeach-2.webp&w=3840&q=75&dpl=dpl_9ZZA3NxAiGDkunrFn3uhJ92DoT2i",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "180px",
+          "computedHeight": "144.891px"
+        }
+      }
+    ]
+  },
+  "local": {
+    "preloaderRect": {},
+    "logoContainer": {
+      "className": "pointer-events-none absolute inset-0 flex items-center justify-center",
+      "styleAttr": "opacity: 1; transform: translate(0px, 0px); transform-origin: 50% 50%; translate: none; rotate: none; scale: none;",
+      "rect": {},
+      "computed": {
+        "display": "flex",
+        "position": "absolute",
+        "top": "0px",
+        "left": "0px",
+        "width": "1409px",
+        "height": "805px",
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "transformOrigin": "704.5px 402.5px"
+      }
+    },
+    "svg": {
+      "className": "h-75 w-auto",
+      "widthAttr": "118",
+      "heightAttr": "142",
+      "viewBox": "0 0 118 142",
+      "styleAttr": "height: 300px; width: auto;",
+      "rect": {},
+      "computed": {
+        "width": "249.281px",
+        "height": "300px",
+        "maxHeight": "300px"
+      }
+    },
+    "foods": [
+      {
+        "index": 0,
+        "className": "food-pineapple absolute h-25 w-25 md:h-40 md:w-40 bottom-[4%] lg:bottom-[10%] left-[10%] lg:left-[15%]",
+        "rect": {},
+        "computed": {
+          "width": "160px",
+          "height": "160px",
+          "top": "564.5px",
+          "bottom": "80.5px",
+          "left": "211.344px",
+          "right": "1037.66px"
+        },
+        "img": {
+          "src": "/images/pineapple-loader.webp",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "160px",
+          "computedHeight": "160px"
+        }
+      },
+      {
+        "index": 1,
+        "className": "food-habanero absolute h-25 w-25 md:h-35 md:w-35 top-[6%] lg:top-[12%] left-[10%] lg:left-[30%]",
+        "rect": {},
+        "computed": {
+          "width": "140px",
+          "height": "140px",
+          "top": "96.5938px",
+          "bottom": "568.406px",
+          "left": "422.688px",
+          "right": "846.312px"
+        },
+        "img": {
+          "src": "/images/habanero-loader.webp",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "140px",
+          "computedHeight": "140px"
+        }
+      },
+      {
+        "index": 2,
+        "className": "food-cherry absolute h-25 w-25 md:h-35 md:w-35 top-[5%] right-[5%] lg:top-[20%] lg:right-[15%]",
+        "rect": {},
+        "computed": {
+          "width": "140px",
+          "height": "140px",
+          "top": "161px",
+          "bottom": "504px",
+          "left": "1057.66px",
+          "right": "211.344px"
+        },
+        "img": {
+          "src": "/images/cherry-loader.webp",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "140px",
+          "computedHeight": "140px"
+        }
+      },
+      {
+        "index": 3,
+        "className": "food-peach absolute h-25 w-25 md:h-45 md:w-45 bottom-[5%] lg:bottom-[10%] right-[10%] lg:right-[25%]",
+        "rect": {},
+        "computed": {
+          "width": "180px",
+          "height": "180px",
+          "top": "544.5px",
+          "bottom": "80.5px",
+          "left": "876.75px",
+          "right": "352.25px"
+        },
+        "img": {
+          "src": "/images/peach-loader.webp",
+          "rect": {},
+          "widthAttr": "400",
+          "heightAttr": "300",
+          "computedWidth": "180px",
+          "computedHeight": "180px"
+        }
+      }
+    ]
+  }
+}

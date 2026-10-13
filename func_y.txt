@@ -1,0 +1,6 @@
+{
+  "result": {
+    "type": "string",
+    "value": "n;let r=u({element:e,instance:t,type:\"text\"});k.add(()=>l.splitTextRegistry.unregister(r))}),S(document.querySelectorAll(c(s.gsapAttributes.bigCopyOnScroll)),e=>{let t=s.gsapAnims.bigCopy(e);if(!t)return;let r=u({element:e,instance:t,type:\"bigCopy\"});k.add(()=>l.splitTextRegistry.unregister(r))})}})),{cleanupParallaxFood:e_,runParallaxFoodAnimation:eS}=((R=(0,h.c)(8))[0]===Symbol.for(\"react.memo_cache_sentinel\")?(j=o(),R[0]=j):j=R[0],D=(0,a.useRef)(j),R[1]===Symbol.for(\"react.memo_cache_sentinel\")?(E=o(),R[1]=E):E=R[1],O=(0,a.useRef)(E),R[2]===Symbol.for(\"react.memo_cache_sentinel\")?(N=o(),R[2]=N):N=R[2],L=(0,a.useRef)(N),I=(0,a.useRef)(null),R[3]===Symbol.for(\"react.memo_cache_sentinel\")?(M=[],R[3]=M):M=R[3],B=(0,a.useRef)(M),R[4]===Symbol.for(\"react.memo_cache_sentinel\")?(q=()=>{L.current.clear(),O.current.clear(),D.current.clear(),I.current?.(),I.current=null,B.current=[]},R[4]=q):q=R[4],F=q,R[5]===Symbol.for(\"react.memo_cache_sentinel\")?(T=()=>{if(0===B.current.length)return;let e=B.current.map(y),t=t=>{for(let r of e){let e=r.el.getBoundingClientRect(),a=e.left+e.width/2,n=e.top+e.height/2,i=t.clientX-a,s=t.clientY-n,l=Math.max(0,1-Math.sqrt(i*i+s*s)/1e3),o=l*l*r.maxDisplaceme"
+  }
+}

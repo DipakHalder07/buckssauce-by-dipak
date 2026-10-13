@@ -62,6 +62,7 @@ const products = [
 
 let currentIndex = 0;
 let isAnimatingHero = false;
+let sliderTimeline = null;
 
 // Hero DOM Elements
 const heroSection = document.querySelector('[data-home-hero]');
@@ -80,6 +81,7 @@ const numSpans = pNumContainer ? Array.from(pNumContainer.querySelectorAll('[dat
 const pNameContainer = heroSection ? heroSection.querySelector('[data-product-names]') : null;
 const nameSpans = pNameContainer ? Array.from(pNameContainer.querySelectorAll('[data-product-name]')) : [];
 
+const bgCircle = heroSection ? heroSection.querySelector('[data-bg-circle]') : null;
 const bgCircleInner = heroSection ? heroSection.querySelector('[data-bg-circle-inner]') : null;
 const heroCtaLink = heroSection ? heroSection.querySelector('[data-bottom-bar] a') : null;
 
@@ -87,156 +89,240 @@ const heroCtaLink = heroSection ? heroSection.querySelector('[data-bottom-bar] a
 const allSliderArrows = document.querySelectorAll('[data-slider-arrow]');
 const heroArrows = Array.from(allSliderArrows).filter(arrow => arrow.closest('[data-home-hero]'));
 
+// Background circle idle breathing animation (exact match from buckssauce.com)
+const bgCircleTween = bgCircle ? gsap.to(bgCircle, {
+  scale: 0.9,
+  ease: 'sine.inOut',
+  duration: 2,
+  repeat: -1,
+  yoyo: true,
+  paused: true
+}) : null;
+
 // Initialize Hero DOM state
 function initHero() {
   document.documentElement.style.setProperty('--color-theme', products[0].color);
 
-  // Set initial shells & bottles
-  bottleShells.forEach((shell, i) => {
-    shell.style.display = i === 0 ? 'flex' : 'none';
-    shell.style.pointerEvents = i === 0 ? 'auto' : 'none';
+  // Set all shells to flex pointer-events none
+  bottleShells.forEach((shell) => {
+    shell.style.display = 'flex';
+    shell.style.pointerEvents = 'none';
   });
 
+  // Set bottles: index 0 visible with rotate(5deg), others hidden with scale 0.25
   bottles.forEach((bottle, i) => {
     if (bottle) {
-      bottle.style.opacity = i === 0 ? '1' : '0';
-      bottle.style.transform = i === 0 ? 'rotate(5deg)' : 'scale(0.85)';
+      gsap.set(bottle, {
+        opacity: i === 0 ? 1 : 0,
+        scale: i === 0 ? 1 : 0.25,
+        xPercent: 0,
+        rotate: 5,
+        transformOrigin: '50% 50%'
+      });
     }
   });
 
   // Set initial fruits
   frontFruits.forEach((fruit, i) => {
-    fruit.style.opacity = i === 0 ? '1' : '0';
+    if (fruit) {
+      gsap.set(fruit, {
+        opacity: i === 0 ? 1 : 0,
+        scale: i === 0 ? 1 : 0,
+        transformOrigin: '50% 50%'
+      });
+    }
   });
 
   backFruits.forEach((fruit, i) => {
-    fruit.style.opacity = i === 0 ? '1' : '0';
+    if (fruit) {
+      gsap.set(fruit, {
+        opacity: i === 0 ? 1 : 0,
+        scale: i === 0 ? 1 : 0,
+        transformOrigin: '50% 50%'
+      });
+    }
   });
 
   // Set initial tickers
-  if (pNumContainer) gsap.set(pNumContainer, { y: 0 });
+  if (pNumContainer) gsap.set(pNumContainer, { yPercent: 0, opacity: 1 });
   numSpans.forEach((span, i) => {
-    span.style.opacity = i === 0 ? '1' : '0';
+    gsap.set(span, { opacity: i === 0 ? 1 : 0 });
   });
 
-  if (pNameContainer) gsap.set(pNameContainer, { y: 0 });
+  if (pNameContainer) gsap.set(pNameContainer, { yPercent: 0, opacity: 1 });
   nameSpans.forEach((span, i) => {
-    span.style.opacity = i === 0 ? '1' : '0';
+    gsap.set(span, { opacity: i === 0 ? 1 : 0 });
   });
+
+  if (bgCircle) {
+    gsap.set(bgCircle, { scale: 1, transformOrigin: '50% 50%' });
+  }
 
   if (bgCircleInner) {
     bgCircleInner.style.backgroundColor = products[0].color;
   }
+
+  // Set hero arrows initial state
+  heroArrows.forEach((arrow) => {
+    gsap.set(arrow, { scale: 1, opacity: 1, transformOrigin: '50% 50%' });
+  });
+
+  // Set initial header and banner state (hidden during preloader)
+  const header = document.querySelector('header') || document.querySelector('[data-nav]');
+  const banner = document.querySelector('aside[data-banner]');
+  if (header) {
+    header.style.opacity = '0';
+    header.style.pointerEvents = 'none';
+    header.style.top = banner ? '2.25rem' : '0px';
+  }
+  if (banner) {
+    banner.style.display = 'none';
+    banner.style.opacity = '0';
+    banner.style.pointerEvents = 'none';
+  }
 }
 
-// Transition to specific product index
+// Transition to specific product index (100% exact match from buckssauce.com)
 function goToProduct(nextIndex, direction = 1) {
   if (isAnimatingHero || nextIndex === currentIndex) return;
-  isAnimatingHero = true;
+  if (sliderTimeline) sliderTimeline.kill();
+  if (bgCircleTween) bgCircleTween.pause();
+
+  const currentCircleScale = bgCircle ? Number(gsap.getProperty(bgCircle, 'scale')) : 1;
+  const startCircleScale = Number.isFinite(currentCircleScale) ? currentCircleScale : 1;
 
   const prevIndex = currentIndex;
   currentIndex = nextIndex;
   const prod = products[currentIndex];
 
-  // 1. Theme Color & Background Circle
-  document.documentElement.style.setProperty('--color-theme', prod.color);
-  if (bgCircleInner) {
-    gsap.to(bgCircleInner, {
-      backgroundColor: prod.color,
-      duration: 0.6,
-      ease: 'power2.out'
-    });
-  }
-
-  // 2. Bottles Transition
-  const oldShell = bottleShells[prevIndex];
   const oldBottle = bottles[prevIndex];
-  const newShell = bottleShells[currentIndex];
+  const oldFrontFruit = frontFruits[prevIndex];
+  const oldBackFruit = backFruits[prevIndex];
+  const oldName = nameSpans[prevIndex];
+  const oldNum = numSpans[prevIndex];
+
   const newBottle = bottles[currentIndex];
+  const newFrontFruit = frontFruits[currentIndex];
+  const newBackFruit = backFruits[currentIndex];
+  const newName = nameSpans[currentIndex];
+  const newNum = numSpans[currentIndex];
 
-  if (oldBottle) {
-    gsap.to(oldBottle, {
-      opacity: 0,
-      scale: 0.82,
-      rotation: direction > 0 ? -12 : 12,
-      duration: 0.45,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        if (oldShell) oldShell.style.display = 'none';
+  const P = gsap.timeline({
+    delay: 0,
+    onStart: () => {
+      isAnimatingHero = true;
+      document.documentElement.style.setProperty('--color-theme', prod.color);
+      if (heroCtaLink) {
+        heroCtaLink.href = prod.url;
       }
-    });
-  }
-
-  if (newShell && newBottle) {
-    newShell.style.display = 'flex';
-    newShell.style.pointerEvents = 'auto';
-    gsap.fromTo(
-      newBottle,
-      { opacity: 0, scale: 0.82, rotation: direction > 0 ? 12 : -12 },
-      { opacity: 1, scale: 1, rotation: 5, duration: 0.65, ease: 'back.out(1.25)' }
-    );
-  }
-
-  // 3. Front Fruits Transition
-  const oldFront = frontFruits[prevIndex];
-  const newFront = frontFruits[currentIndex];
-  if (oldFront) {
-    gsap.to(oldFront, { opacity: 0, scale: 0.75, duration: 0.35, ease: 'power2.in' });
-  }
-  if (newFront) {
-    gsap.fromTo(
-      newFront,
-      { opacity: 0, scale: 0.75 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.3)' }
-    );
-  }
-
-  // 4. Back Fruits Transition
-  const oldBack = backFruits[prevIndex];
-  const newBack = backFruits[currentIndex];
-  if (oldBack) {
-    gsap.to(oldBack, { opacity: 0, scale: 0.75, duration: 0.35, ease: 'power2.in' });
-  }
-  if (newBack) {
-    gsap.fromTo(
-      newBack,
-      { opacity: 0, scale: 0.75 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.3)' }
-    );
-  }
-
-  // 5. Product Number Ticker
-  if (pNumContainer) {
-    gsap.to(pNumContainer, {
-      y: -currentIndex * 16,
-      duration: 0.45,
-      ease: 'power2.out'
-    });
-  }
-  numSpans.forEach((span, i) => {
-    gsap.to(span, { opacity: i === currentIndex ? 1 : 0, duration: 0.35 });
+    },
+    onComplete: () => {
+      isAnimatingHero = false;
+      if (bgCircleTween) bgCircleTween.restart(true);
+    }
   });
 
-  // 6. Product Name Ticker
-  if (pNameContainer) {
-    gsap.to(pNameContainer, {
-      y: -currentIndex * 16,
-      duration: 0.45,
+  sliderTimeline = P;
+
+  // 1. Arrows pop down to scale 0
+  if (heroArrows.length) {
+    P.to(heroArrows, { scale: 0, duration: 0.45, ease: 'power2.out' }, 'start');
+  }
+
+  // 2. Old bottle exits horizontally with scale down and tilt
+  if (oldBottle) {
+    P.to(oldBottle, {
+      scale: 0.25,
+      xPercent: 100 * direction,
+      rotate: 15 * direction,
+      duration: 0.9,
       ease: 'power2.out'
-    });
-  }
-  nameSpans.forEach((span, i) => {
-    gsap.to(span, { opacity: i === currentIndex ? 1 : 0, duration: 0.35 });
-  });
-
-  // 7. Update CTA Link URL
-  if (heroCtaLink) {
-    heroCtaLink.href = prod.url;
+    }, 'start');
+    P.to(oldBottle, { opacity: 0, duration: 0.45 }, 'start+=0.25');
   }
 
-  setTimeout(() => {
-    isAnimatingHero = false;
-  }, 480);
+  // 3. Background circle compresses inward
+  if (bgCircle) {
+    P.fromTo(bgCircle,
+      { scale: startCircleScale },
+      { scale: 0.5, duration: 0.36, ease: 'back.in(1.1)' },
+      'start'
+    );
+  }
+
+  // 4. Old fruits scale down to 0 and fade out
+  const oldFruits = [oldBackFruit, oldFrontFruit].filter(Boolean);
+  if (oldFruits.length) {
+    P.to(oldFruits, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.72,
+      stagger: 0,
+      ease: 'power2.out'
+    }, '<');
+  }
+
+  // 5. Old ticker text fades out
+  const oldText = [oldName, oldNum].filter(Boolean);
+  if (oldText.length) {
+    P.to(oldText, { opacity: 0, duration: 0.45, ease: 'power2.in' }, 'start');
+  }
+
+  // 6. New bottle enters horizontally from opposite direction
+  if (newBottle) {
+    P.to(newBottle, { opacity: 1, duration: 0.45 }, 'start');
+    P.fromTo(newBottle,
+      { scale: 0.25, xPercent: -100 * direction, rotate: -15 * direction },
+      { scale: 1, xPercent: 0, rotate: 5, duration: 0.9, ease: 'power2.out' },
+      '<'
+    );
+  }
+
+  // 7. Background circle pops out with juicy spring
+  if (bgCircle) {
+    P.to(bgCircle, { scale: 1, duration: 0.54, ease: 'back.out(2)' }, 'start+=0.36');
+  }
+
+  // 8. Background circle inner background color morphs
+  if (bgCircleInner) {
+    P.to(bgCircleInner, { backgroundColor: prod.color, ease: 'power2.out', duration: 0.9 }, '<');
+  }
+
+  // 9. New fruits spring in with stagger
+  const newFruits = [newFrontFruit, newBackFruit].filter(Boolean);
+  if (newFruits.length) {
+    P.fromTo(newFruits,
+      { scale: 0, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.72, stagger: 0.12, ease: 'power2.out' },
+      '<'
+    );
+  }
+
+  // 10. New ticker text fades in
+  const newText = [newName, newNum].filter(Boolean);
+  if (newText.length) {
+    P.fromTo(newText, { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power2.out' }, 'start');
+  }
+
+  // 11. Tickers vertical shift by yPercent
+  const tickerContainers = [pNameContainer, pNumContainer].filter(Boolean);
+  if (tickerContainers.length) {
+    P.to(tickerContainers, {
+      yPercent: -100 * currentIndex,
+      duration: 0.9,
+      ease: 'power2.out'
+    }, '<');
+  }
+
+  // 12. Arrows pop back up with bouncy ease
+  if (heroArrows.length) {
+    P.to(heroArrows, { scale: 1, duration: 0.45, ease: 'back.out(2.5)' });
+  }
+
+  // Release lock slightly early so responsive clicks are immediately honored
+  P.call(() => { isAnimatingHero = false; }, null, 0.85);
+
+  P.play();
 }
 
 // Attach Arrow Listeners
@@ -260,10 +346,14 @@ if (heroArrows.length >= 2) {
   // Hover feedback on arrows
   heroArrows.forEach(arrow => {
     arrow.addEventListener('mouseenter', () => {
-      gsap.to(arrow, { scale: 1.08, duration: 0.2, ease: 'power2.out' });
+      if (!isAnimatingHero) {
+        gsap.to(arrow, { scale: 1.08, duration: 0.2, ease: 'power2.out' });
+      }
     });
     arrow.addEventListener('mouseleave', () => {
-      gsap.to(arrow, { scale: 1, duration: 0.2, ease: 'power2.out' });
+      if (!isAnimatingHero) {
+        gsap.to(arrow, { scale: 1, duration: 0.2, ease: 'power2.out' });
+      }
     });
   });
 }
@@ -277,14 +367,14 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Hero Mouse Parallax Effect
+// Hero Mouse Parallax Effect (Bottle 3D Tilt; food parallax handled by initParallaxFood)
 if (heroSection) {
   window.addEventListener('mousemove', (e) => {
     const xNorm = (e.clientX / window.innerWidth - 0.5) * 2;
     const yNorm = (e.clientY / window.innerHeight - 0.5) * 2;
 
     const currentBottle = bottles[currentIndex];
-    if (currentBottle) {
+    if (currentBottle && !isAnimatingHero) {
       gsap.to(currentBottle, {
         x: xNorm * 16,
         y: yNorm * 12,
@@ -294,17 +384,6 @@ if (heroSection) {
         ease: 'power2.out'
       });
     }
-
-    const floatingFoods = heroSection.querySelectorAll('[data-parallax-food]');
-    floatingFoods.forEach((food, idx) => {
-      const factor = (idx % 2 === 0 ? 1 : -1) * (14 + idx * 5);
-      gsap.to(food, {
-        x: xNorm * factor,
-        y: yNorm * factor,
-        duration: 1.1,
-        ease: 'power2.out'
-      });
-    });
   });
 }
 
@@ -382,13 +461,13 @@ function runPageLoader() {
     gsap.set(logo, { scale: 0, opacity: 0, transformOrigin: '50% 50%' });
   }
   if (leftHorn) {
-    gsap.set(leftHorn, { opacity: 0, rotate: -25, transformOrigin: 'bottom right' });
+    gsap.set(leftHorn, { opacity: 0, rotation: -25, transformOrigin: 'bottom right' });
   }
   if (rightHorn) {
-    gsap.set(rightHorn, { opacity: 0, rotate: 25, transformOrigin: 'bottom left' });
+    gsap.set(rightHorn, { opacity: 0, rotation: 25, transformOrigin: 'bottom left' });
   }
   if (bucksLetters.length || sauceLetters.length) {
-    gsap.set([...bucksLetters, ...sauceLetters], { opacity: 0, scale: 0.2, y: 4, rotate: 0, transformOrigin: '50% 100%' });
+    gsap.set([...bucksLetters, ...sauceLetters], { opacity: 0, scale: 0.2, y: 4, rotation: 0, transformOrigin: '50% 100%' });
   }
 
   // 2. Geometry calculations for 4 food items
@@ -396,20 +475,53 @@ function runPageLoader() {
   const center = { x: rect.width / 2, y: rect.height / 2 };
   const isMobile = window.innerWidth < 1024;
 
-  const foodCoords = foods.map(el => {
+  const foodCoords = foods.map((el, i) => {
     const t = el.getBoundingClientRect();
-    const centerX = t.left - rect.left + t.width / 2;
-    const centerY = t.top - rect.top + t.height / 2;
+    let width = t.width;
+    let height = t.height;
+    let left = t.left - rect.left;
+    let top = t.top - rect.top;
+
+    // Robust fallback to exact responsive design specs if layout is not yet rendered
+    if (width === 0 || (top === 0 && left === 0)) {
+      if (i === 0) { // Pineapple (bottom-left)
+        width = isMobile ? 100 : 160;
+        height = width;
+        left = isMobile ? rect.width * 0.10 : rect.width * 0.15;
+        top = isMobile ? rect.height - height - rect.height * 0.04 : rect.height - height - rect.height * 0.10;
+      } else if (i === 1) { // Habanero (top-left)
+        width = isMobile ? 100 : 140;
+        height = width;
+        left = isMobile ? rect.width * 0.10 : rect.width * 0.30;
+        top = isMobile ? rect.height * 0.06 : rect.height * 0.12;
+      } else if (i === 2) { // Cherry (top-right)
+        width = isMobile ? 100 : 140;
+        height = width;
+        left = isMobile ? rect.width - width - rect.width * 0.05 : rect.width - width - rect.width * 0.15;
+        top = isMobile ? rect.height * 0.05 : rect.height * 0.20;
+      } else if (i === 3) { // Peach (bottom-right)
+        width = isMobile ? 100 : 180;
+        height = width;
+        left = isMobile ? rect.width - width - rect.width * 0.10 : rect.width - width - rect.width * 0.25;
+        top = isMobile ? rect.height - height - rect.height * 0.05 : rect.height - height - rect.height * 0.10;
+      }
+    }
+
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
     return {
       el,
-      top: t.top - rect.top,
-      left: t.left - rect.left,
+      top,
+      left,
       centerX,
       centerY,
-      width: t.width,
-      height: t.height
+      width,
+      height
     };
   });
+
+
+
 
   const initialRotations = foods.map(getRandomRotation);
 
@@ -431,7 +543,7 @@ function runPageLoader() {
     gsap.set(foods, {
       opacity: 0,
       scale: 0,
-      rotate: (i) => initialRotations[i] ?? 0,
+      rotation: (i) => initialRotations[i] ?? 0,
       transformOrigin: '50% 50%',
       top: '50%',
       left: '50%',
@@ -497,7 +609,7 @@ function runPageLoader() {
   if (leftHorn && rightHorn) {
     tl.to([leftHorn, rightHorn], {
       opacity: 1,
-      rotate: 0,
+      rotation: 0,
       duration: 0.6,
       ease: 'power2.out',
       stagger: 0.05
@@ -516,8 +628,8 @@ function runPageLoader() {
       stagger: 0.02,
       ease: 'power2.out'
     }, '<35%');
-    if (firstLetter) tl.fromTo(firstLetter, { rotate: -5 }, { rotate: 0, duration: 0.6, ease: 'power2.out' }, '<');
-    if (lastLetter && lastLetter !== firstLetter) tl.fromTo(lastLetter, { rotate: 5 }, { rotate: 0, duration: 0.6, ease: 'power2.out' }, '<');
+    if (firstLetter) tl.fromTo(firstLetter, { rotation: -5 }, { rotation: 0, duration: 0.6, ease: 'power2.out' }, '<');
+    if (lastLetter && lastLetter !== firstLetter) tl.fromTo(lastLetter, { rotation: 5 }, { rotation: 0, duration: 0.6, ease: 'power2.out' }, '<');
   }
   if (sauceLetters.length) {
     tl.to(sauceLetters, {
@@ -535,7 +647,7 @@ function runPageLoader() {
     tl.to(foods, {
       opacity: 1,
       scale: 1,
-      rotate: 0,
+      rotation: 0,
       top: (i) => foodCoords[i]?.top ?? '50%',
       left: (i) => foodCoords[i]?.left ?? '50%',
       xPercent: 0,
@@ -597,11 +709,42 @@ function animateHeroEntrance() {
   const middleBar = document.querySelector('[data-middle-bar]');
   const bottomBar = document.querySelector('[data-bottom-bar]');
 
+  // Banner drops in smoothly
+  const banner = document.querySelector('aside[data-banner]');
+  if (banner) {
+    banner.style.display = 'flex';
+    banner.style.pointerEvents = 'auto';
+    gsap.fromTo(banner,
+      { y: -36, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+    );
+    const closeBtn = banner.querySelector('div.cursor-pointer');
+    if (closeBtn && !closeBtn._hasListener) {
+      closeBtn._hasListener = true;
+      closeBtn.addEventListener('click', () => {
+        gsap.to(banner, {
+          height: 0,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            banner.style.display = 'none';
+            if (header) {
+              gsap.to(header, { top: '0px', duration: 0.3, ease: 'power2.out' });
+            }
+          }
+        });
+      });
+    }
+  }
+
   // Header drops in smoothly
   if (header) {
+    header.style.top = banner ? '2.25rem' : '0px';
+    header.style.pointerEvents = 'auto';
     gsap.fromTo(header,
-      { y: -60, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
+      { y: -36, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
     );
   }
 
@@ -622,7 +765,15 @@ function animateHeroEntrance() {
   if (bgCircle) {
     gsap.fromTo(bgCircle,
       { scale: 0.4, opacity: 0 },
-      { scale: 0.934, opacity: 1, duration: 0.75, ease: 'back.out(1.1)' }
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.75,
+        ease: 'back.out(1.1)',
+        onComplete: () => {
+          if (bgCircleTween) bgCircleTween.play();
+        }
+      }
     );
   }
 
@@ -658,6 +809,100 @@ function animateHeroEntrance() {
 }
 
 runPageLoader();
+
+// =========================================================================
+// PARALLAX FOOD INTERACTIVE PHYSICS (Authentic GSAP Match from buckssauce.com)
+// Continuous floating waves + Mouse repulsion within 1000px radius
+// =========================================================================
+function initParallaxFood() {
+  const getDistanceMult = (distAttr) => {
+    const d = Number.parseInt(distAttr ?? '', 10);
+    return d === 2 ? 0.65 : d === 3 ? 0.3 : 1;
+  };
+
+  const parallaxItems = [];
+  const foodElements = document.querySelectorAll('[data-parallax-food]');
+
+  foodElements.forEach((el) => {
+    const inner = el.querySelector('[data-parallax-food-inner]');
+    if (!inner) return;
+
+    const randomFactor = Number.parseFloat((Math.random()).toFixed(2));
+    const distMult = getDistanceMult(el.getAttribute('data-parallax-distance'));
+
+    // 1. Idle Gentle Floating Wave Animation (Sine wave oscillation)
+    const floatAmp = Number.parseFloat(el.getAttribute('data-parallax-float-amplitude') || randomFactor) * distMult;
+    const duration = 3 + 2 * Math.random();
+    const yDisplacement = 25 * floatAmp;
+    const rotDisplacement = 5 * floatAmp;
+
+    gsap.fromTo(el,
+      { yPercent: -yDisplacement, rotation: -rotDisplacement },
+      { yPercent: yDisplacement, rotation: rotDisplacement, duration: duration, ease: 'sine.inOut', repeat: -1, yoyo: true }
+    );
+
+    // 2. ScrollTrigger Scrub Parallax (for page sections outside preloader)
+    if (!el.closest('#bucks-preloader')) {
+      const speed = Number.parseFloat(el.getAttribute('data-parallax-speed') || randomFactor) * distMult;
+      const scrubSpeed = 2.5 * speed;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        invalidateOnRefresh: true,
+        animation: gsap.to(inner, { yPercent: -50 * scrubSpeed, ease: 'none' })
+      });
+    }
+
+    // 3. Mouse displacement physics
+    const mouseForce = Number.parseFloat(el.getAttribute('data-parallax-mouse-force') || randomFactor) * distMult;
+    const maxDisplacement = 80 * (mouseForce || 0.2);
+
+    parallaxItems.push({
+      el,
+      inner,
+      maxDisplacement,
+      quickMouseX: gsap.quickTo(inner, 'x', { duration: 0.8, ease: 'power2.out' }),
+      quickMouseY: gsap.quickTo(inner, 'y', { duration: 0.8, ease: 'power2.out' })
+    });
+  });
+
+  // Global mousemove handler with quadratic falloff within 1000px
+  if (parallaxItems.length) {
+    window.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      for (let i = 0; i < parallaxItems.length; i++) {
+        const item = parallaxItems[i];
+        const rect = item.el.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) continue;
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+        const dist = Math.hypot(dx, dy);
+
+        // Falloff over 1000px radius
+        const proximity = Math.max(0, 1 - dist / 1000);
+        const displacement = proximity * proximity * item.maxDisplacement;
+
+        if (displacement > 0.1) {
+          const angle = Math.atan2(dy, dx);
+          item.quickMouseX(Math.cos(angle) * displacement);
+          item.quickMouseY(Math.sin(angle) * displacement);
+        } else {
+          item.quickMouseX(0);
+          item.quickMouseY(0);
+        }
+      }
+    });
+  }
+}
+
+initParallaxFood();
 
 // =========================================================================
 // HEADER SCROLL ANIMATION & DESKTOP NAV (Authentic GSAP Match from buckssauce.com)
@@ -701,6 +946,13 @@ if (isDesktop()) {
 function onScrollUpdate(currentY) {
   if (!headerEl) return;
   const shouldBeScrolled = currentY > 64;
+  const banner = document.querySelector('aside[data-banner]');
+  const isBannerOpen = banner && banner.style.display !== 'none';
+
+  const targetTop = (shouldBeScrolled || !isBannerOpen) ? '0px' : '2.25rem';
+  if (headerEl.style.top !== targetTop) {
+    gsap.to(headerEl, { top: targetTop, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+  }
 
   if (shouldBeScrolled && !isHeaderScrolled) {
     isHeaderScrolled = true;
