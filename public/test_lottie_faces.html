@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    body {
+      background: #100b06;
+      color: #f5e4c7;
+      font-family: sans-serif;
+      display: flex;
+      gap: 30px;
+      padding: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+    .fruit-card {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fruit-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .face-anim {
+      position: absolute;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Peach -->
+  <div class="fruit-card" id="peach-card">
+    <img class="fruit-img" src="/images/img_11.avif" />
+    <div id="peach-face" class="face-anim" style="top: 16%; left: 0%; width: 100%; aspect-ratio: 1; transform: rotate(0deg) scaleX(1);"></div>
+  </div>
+
+  <!-- Pineapple -->
+  <div class="fruit-card" id="pineapple-card">
+    <img class="fruit-img" src="/images/img_12.avif" />
+    <div id="pineapple-face" class="face-anim" style="top: 10%; left: 0%; width: 105%; aspect-ratio: 1; transform: rotate(7deg) scaleX(1);"></div>
+  </div>
+
+  <!-- Habanero -->
+  <div class="fruit-card" id="habanero-card">
+    <img class="fruit-img" src="/images/img_13.avif" />
+    <div id="habanero-face" class="face-anim" style="top: 20%; left: 0%; width: 70%; aspect-ratio: 1; transform: rotate(10deg) scaleX(-1);"></div>
+  </div>
+
+  <!-- Cherry -->
+  <div class="fruit-card" id="cherry-card">
+    <img class="fruit-img" src="/images/img_14.avif" />
+    <div id="cherry-face" class="face-anim" style="top: 40%; left: 0%; width: 110%; aspect-ratio: 1; transform: rotate(0deg) scaleX(1);"></div>
+  </div>
+
+  <script>
+    const faces = [
+      { id: 'peach-face', file: '/lotties/heart_eyes.json' },
+      { id: 'pineapple-face', file: '/lotties/cool.json' },
+      { id: 'habanero-face', file: '/lotties/fire_breathing.json' },
+      { id: 'cherry-face', file: '/lotties/sassy.json' }
+    ];
+
+    faces.forEach(f => {
+      lottie.loadAnimation({
+        container: document.getElementById(f.id),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: f.file
+      });
+    });
+  </script>
+</body>
+</html>

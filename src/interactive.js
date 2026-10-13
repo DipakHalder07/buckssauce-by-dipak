@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import confetti from 'canvas-confetti';
+import lottie from 'lottie-web';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,104 @@ const products = [
     url: 'https://buckssauce.com/shop/crushed-cherry-garlic'
   }
 ];
+
+const fruitFaceConfigs = [
+  {
+    index: 0,
+    name: 'peach',
+    path: '/lotties/heart_eyes.json'
+  },
+  {
+    index: 1,
+    name: 'pineapple',
+    path: '/lotties/cool.json'
+  },
+  {
+    index: 2,
+    name: 'habanero',
+    path: '/lotties/fire_breathing.json'
+  },
+  {
+    index: 3,
+    name: 'cherry',
+    path: '/lotties/sassy.json'
+  }
+];
+
+const lottieAnimInstances = [];
+let activeBottleFloatTween = null;
+
+function startBottleFloat(bottle) {
+  if (activeBottleFloatTween) activeBottleFloatTween.kill();
+  if (!bottle) return;
+  activeBottleFloatTween = gsap.to(bottle, {
+    y: '+=10',
+    rotate: '+=1.5',
+    duration: 2.6,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+}
+
+function initFruitFaceAnimations() {
+  frontFruits.forEach((fruit, i) => {
+    if (!fruit) return;
+    const canvas = fruit.querySelector('canvas');
+    if (canvas) {
+      canvas.style.display = 'none'; // hide static fallback canvas
+      const parent = canvas.parentElement;
+      if (parent) {
+        let lottieHost = parent.querySelector('.lottie-face-host');
+        if (!lottieHost) {
+          lottieHost = document.createElement('div');
+          lottieHost.className = 'lottie-face-host';
+          lottieHost.style.cssText = 'width: 100%; height: 100%; pointer-events: none; overflow: visible; display: flex; align-items: center; justify-content: center;';
+          parent.appendChild(lottieHost);
+        }
+
+        try {
+          if (lottieAnimInstances[i]) {
+            lottieAnimInstances[i].destroy();
+          }
+          const anim = lottie.loadAnimation({
+            container: lottieHost,
+            renderer: 'svg',
+            loop: true,
+            autoplay: (i === 0),
+            path: fruitFaceConfigs[i]?.path
+          });
+          lottieAnimInstances[i] = anim;
+        } catch (err) {
+          console.warn('Lottie failed to load for fruit', i, err);
+        }
+      }
+    }
+
+    // Fruit hover interactivity
+    if (!fruit._hasHoverListener) {
+      fruit._hasHoverListener = true;
+      fruit.style.cursor = 'pointer';
+      fruit.style.pointerEvents = 'auto';
+      fruit.addEventListener('mouseenter', () => {
+        if (currentIndex === i && !isAnimatingHero) {
+          gsap.to(fruit, { scale: 1.1, rotate: '+=4', duration: 0.35, ease: 'back.out(2)' });
+          if (lottieAnimInstances[i]) {
+            lottieAnimInstances[i].setSpeed(1.5);
+          }
+        }
+      });
+      fruit.addEventListener('mouseleave', () => {
+        if (currentIndex === i && !isAnimatingHero) {
+          gsap.to(fruit, { scale: 1, rotate: '-=4', duration: 0.45, ease: 'power2.out' });
+          if (lottieAnimInstances[i]) {
+            lottieAnimInstances[i].setSpeed(1.0);
+          }
+        }
+      });
+    }
+  });
+}
 
 let currentIndex = 0;
 let isAnimatingHero = false;
@@ -180,6 +279,9 @@ function initHero() {
     banner.style.opacity = '0';
     banner.style.pointerEvents = 'none';
   }
+
+  // Initialize fruit animated faces
+  initFruitFaceAnimations();
 }
 
 // Transition to specific product index (100% exact match from buckssauce.com)
@@ -187,6 +289,7 @@ function goToProduct(nextIndex, direction = 1) {
   if (isAnimatingHero || nextIndex === currentIndex) return;
   if (sliderTimeline) sliderTimeline.kill();
   if (bgCircleTween) bgCircleTween.pause();
+  if (activeBottleFloatTween) activeBottleFloatTween.kill();
 
   const currentCircleScale = bgCircle ? Number(gsap.getProperty(bgCircle, 'scale')) : 1;
   const startCircleScale = Number.isFinite(currentCircleScale) ? currentCircleScale : 1;
@@ -215,10 +318,21 @@ function goToProduct(nextIndex, direction = 1) {
       if (heroCtaLink) {
         heroCtaLink.href = prod.url;
       }
+
+      // Smoothly crossfade and trigger fruit faces
+      if (lottieAnimInstances[prevIndex]) {
+        gsap.delayedCall(0.35, () => {
+          lottieAnimInstances[prevIndex]?.pause();
+        });
+      }
+      if (lottieAnimInstances[currentIndex]) {
+        lottieAnimInstances[currentIndex].goToAndPlay(0, true);
+      }
     },
     onComplete: () => {
       isAnimatingHero = false;
       if (bgCircleTween) bgCircleTween.restart(true);
+      startBottleFloat(newBottle);
     }
   });
 
@@ -288,12 +402,12 @@ function goToProduct(nextIndex, direction = 1) {
     P.to(bgCircleInner, { backgroundColor: prod.color, ease: 'power2.out', duration: 0.9 }, '<');
   }
 
-  // 9. New fruits spring in with stagger
+  // 9. New fruits spring in with stagger and juicy spring
   const newFruits = [newFrontFruit, newBackFruit].filter(Boolean);
   if (newFruits.length) {
     P.fromTo(newFruits,
       { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.72, stagger: 0.12, ease: 'power2.out' },
+      { scale: 1, opacity: 1, duration: 0.72, stagger: 0.12, ease: 'back.out(1.8)' },
       '<'
     );
   }
@@ -367,7 +481,36 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Hero Mouse Parallax Effect (Bottle 3D Tilt; food parallax handled by initParallaxFood)
+// Touch Swipe Navigation for Mobile Hero
+if (heroSection) {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  heroSection.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  heroSection.addEventListener('touchend', (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const deltaY = e.changedTouches[0].clientY - touchStartY;
+      // Only trigger if horizontal swipe is greater than vertical swipe and exceeds 45px
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 45) {
+        if (deltaX < 0) {
+          // Swipe Left -> Next
+          goToProduct((currentIndex + 1) % products.length, 1);
+        } else {
+          // Swipe Right -> Prev
+          goToProduct((currentIndex - 1 + products.length) % products.length, -1);
+        }
+      }
+    }
+  }, { passive: true });
+}
+
+// Hero Mouse Parallax Effect (Bottle 3D Tilt & Fruits 3D depth)
 if (heroSection) {
   window.addEventListener('mousemove', (e) => {
     const xNorm = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -376,11 +519,30 @@ if (heroSection) {
     const currentBottle = bottles[currentIndex];
     if (currentBottle && !isAnimatingHero) {
       gsap.to(currentBottle, {
-        x: xNorm * 16,
-        y: yNorm * 12,
-        rotationY: xNorm * 10,
-        rotationX: -yNorm * 8,
+        x: xNorm * 18,
+        y: yNorm * 14,
+        rotationY: xNorm * 12,
+        rotationX: -yNorm * 9,
         duration: 0.7,
+        ease: 'power2.out'
+      });
+    }
+
+    const activeFront = frontFruits[currentIndex];
+    const activeBack = backFruits[currentIndex];
+    if (activeFront && !isAnimatingHero) {
+      gsap.to(activeFront, {
+        x: -xNorm * 16,
+        y: -yNorm * 12,
+        duration: 0.85,
+        ease: 'power2.out'
+      });
+    }
+    if (activeBack && !isAnimatingHero) {
+      gsap.to(activeBack, {
+        x: xNorm * 22,
+        y: yNorm * 16,
+        duration: 1.0,
         ease: 'power2.out'
       });
     }
@@ -781,7 +943,17 @@ function animateHeroEntrance() {
   if (bottle0) {
     gsap.fromTo(bottle0,
       { y: 150, scale: 0.85, opacity: 0, rotation: 15 },
-      { y: 0, scale: 1, opacity: 1, rotation: 5, duration: 0.85, ease: 'back.out(1.3)' }
+      {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        rotation: 5,
+        duration: 0.85,
+        ease: 'back.out(1.3)',
+        onComplete: () => {
+          startBottleFloat(bottle0);
+        }
+      }
     );
   }
 
@@ -789,7 +961,18 @@ function animateHeroEntrance() {
   if (frontFruit0) {
     gsap.fromTo(frontFruit0,
       { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.65, delay: 0.15, ease: 'back.out(1.4)' }
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.65,
+        delay: 0.15,
+        ease: 'back.out(1.4)',
+        onComplete: () => {
+          if (lottieAnimInstances[0]) {
+            lottieAnimInstances[0].goToAndPlay(0, true);
+          }
+        }
+      }
     );
   }
   if (backFruit0) {
